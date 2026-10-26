@@ -1,0 +1,8 @@
+{
+  "direction": "A calm, instrument-like financial research workspace: a narrow navy navigation rail, a readable investigation brief, and a paper-white evidence reader. The source passage is the visual focus.",
+  "palette": {"navigation":"#173d56","ink":"#203347","canvas":"#edf2f5","paper":"#ffffff","evidence":"#fff0ae","action":"#176d79"},
+  "type": "Segoe UI/system sans for controls and narrative; Georgia only for source-document passages. Sentence-case labels, tabular numbers for recorded timings.",
+  "layout": "Left-aligned research list / main memo / contextual source viewer. Secondary execution and evaluation live in selectable views rather than filling the research screen with cards.",
+  "principles": ["Citations behave like controls: selecting a claim opens its supporting passage.","Source text and uncertainty are visible at the point of use.","Recorded results and real execution status are explicit.","No invented metrics, decorative agent graph, stock photos or simulated live reasoning."],
+  "review": "Chose a compact three-pane analyst instrument over generic dashboard KPI cards. The changing evidence viewer is the distinctive interaction; surrounding chrome remains restrained."
+}

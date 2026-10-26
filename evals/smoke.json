@@ -1,0 +1,44 @@
+[
+  {
+    "id": "liquidity-2024-2025-pair",
+    "title": "Liquidity under pressure",
+    "theme": "liquidity",
+    "query": "What do the filings disclose about liquidity risk, funding sources, deposits and liquidity buffers?",
+    "tickers": [
+      "BAC",
+      "JPM"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "liquidity risk funding deposits liquidity coverage ratio",
+      "liquidity sources cash stress capital resources"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "catastrophe-2024-2025-pair",
+    "title": "Catastrophe exposure",
+    "theme": "catastrophe",
+    "query": "How do the insurers describe catastrophe exposure, risk concentration and uncertainty?",
+    "tickers": [
+      "CB",
+      "TRV"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "catastrophe losses natural disasters risk concentration",
+      "catastrophe modeling weather uncertainty climate"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  }
+]

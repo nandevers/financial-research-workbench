@@ -1,0 +1,83 @@
+{
+  "checked_on": "2026-10-26",
+  "policy": "Downloadable Apache-2.0 or MIT weights; self-hosted inference only. T4-targeted estimates pending measured runs.",
+  "models": [
+    {
+      "id": "Qwen/Qwen3.5-9B",
+      "name": "Qwen 3.5 9B",
+      "family": "Qwen",
+      "parameters_b": 9,
+      "license": "apache-2.0",
+      "role": "Widely adopted current general-purpose baseline",
+      "loader": "multimodal",
+      "quantization": "bnb4",
+      "requires_remote_code": false,
+      "transformers_profile": "5.13.1",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "recommended_gpu_gb": 16,
+      "status": "not_run"
+    },
+    {
+      "id": "XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B",
+      "name": "MiMo V2.6 Distill 9B",
+      "family": "MiMo",
+      "parameters_b": 9,
+      "license": "mit",
+      "role": "Fresh agent-focused distillation; same-base comparison with Qwen",
+      "loader": "multimodal",
+      "quantization": "bnb4",
+      "requires_remote_code": false,
+      "transformers_profile": "5.13.1",
+      "source": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B",
+      "recommended_gpu_gb": 16,
+      "status": "not_run"
+    },
+    {
+      "id": "XHToken/Spark-X2.6-4B",
+      "name": "Spark X2.6 4B",
+      "family": "Spark",
+      "parameters_b": 4,
+      "license": "apache-2.0",
+      "role": "Fresh compact agent model; efficiency challenger",
+      "loader": "causal",
+      "quantization": "fp16",
+      "requires_remote_code": true,
+      "transformers_profile": "4.57.1",
+      "source": "https://huggingface.co/XHToken/Spark-X2.6-4B",
+      "recommended_gpu_gb": 16,
+      "status": "not_run",
+      "runtime_note": "Native FP16: custom attention was incompatible with bitsandbytes packed Byte weights in the T4 smoke test."
+    },
+    {
+      "id": "mistralai/Ministral-3-3B-Instruct-2512",
+      "name": "Ministral 3 3B",
+      "family": "Mistral",
+      "parameters_b": 3.8,
+      "license": "apache-2.0",
+      "role": "Compact instruction and structured-output baseline",
+      "loader": "mistral",
+      "quantization": "fp16_dequantize_fp8",
+      "requires_remote_code": false,
+      "transformers_profile": "5.13.1",
+      "source": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512",
+      "recommended_gpu_gb": 16,
+      "status": "not_run"
+    },
+    {
+      "id": "ibm-granite/granite-4.1-8b",
+      "name": "Granite 4.1 8B",
+      "family": "Granite",
+      "parameters_b": 8,
+      "license": "apache-2.0",
+      "role": "Enterprise-focused RAG and extraction baseline",
+      "loader": "causal",
+      "quantization": "bnb4",
+      "requires_remote_code": false,
+      "transformers_profile": "5.13.1",
+      "source": "https://huggingface.co/ibm-granite/granite-4.1-8b",
+      "recommended_gpu_gb": 16,
+      "status": "not_run"
+    }
+  ],
+  "selection_note": "Qwen and MiMo share a base architecture; this compares checkpoints, not five independent architectures."
+}

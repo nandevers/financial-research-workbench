@@ -1,0 +1,242 @@
+[
+  {
+    "id": "liquidity-2025-single",
+    "title": "Liquidity under pressure",
+    "theme": "liquidity",
+    "query": "What do the filings disclose about liquidity risk, funding sources, deposits and liquidity buffers?",
+    "tickers": [
+      "BAC"
+    ],
+    "years": [
+      2025
+    ],
+    "followups": [
+      "liquidity risk funding deposits liquidity coverage ratio",
+      "liquidity sources cash stress capital resources"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "liquidity-2024-2025-pair",
+    "title": "Liquidity under pressure",
+    "theme": "liquidity",
+    "query": "What do the filings disclose about liquidity risk, funding sources, deposits and liquidity buffers?",
+    "tickers": [
+      "BAC",
+      "JPM"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "liquidity risk funding deposits liquidity coverage ratio",
+      "liquidity sources cash stress capital resources"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "credit-2025-single",
+    "title": "Credit quality in context",
+    "theme": "credit",
+    "query": "How do credit-loss allowances, charge-offs and management risk discussion compare across the selected periods?",
+    "tickers": [
+      "BAC"
+    ],
+    "years": [
+      2025
+    ],
+    "followups": [
+      "allowance credit losses net charge-offs credit quality",
+      "provision loan credit risk delinquencies"
+    ],
+    "as_of": null,
+    "split": "test",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "credit-2024-2025-pair",
+    "title": "Credit quality in context",
+    "theme": "credit",
+    "query": "How do credit-loss allowances, charge-offs and management risk discussion compare across the selected periods?",
+    "tickers": [
+      "BAC",
+      "JPM"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "allowance credit losses net charge-offs credit quality",
+      "provision loan credit risk delinquencies"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "capital-2025-single",
+    "title": "Capital and resilience",
+    "theme": "capital",
+    "query": "What do the selected reports say about capital resources, regulatory constraints and capital management?",
+    "tickers": [
+      "BAC"
+    ],
+    "years": [
+      2025
+    ],
+    "followups": [
+      "capital resources regulatory capital common equity tier",
+      "capital management stress tests financial condition"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "capital-2024-2025-pair",
+    "title": "Capital and resilience",
+    "theme": "capital",
+    "query": "What do the selected reports say about capital resources, regulatory constraints and capital management?",
+    "tickers": [
+      "BAC",
+      "JPM"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "capital resources regulatory capital common equity tier",
+      "capital management stress tests financial condition"
+    ],
+    "as_of": null,
+    "split": "test",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "catastrophe-2025-single",
+    "title": "Catastrophe exposure",
+    "theme": "catastrophe",
+    "query": "How do the insurers describe catastrophe exposure, risk concentration and uncertainty?",
+    "tickers": [
+      "CB"
+    ],
+    "years": [
+      2025
+    ],
+    "followups": [
+      "catastrophe losses natural disasters risk concentration",
+      "catastrophe modeling weather uncertainty climate"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "catastrophe-2024-2025-pair",
+    "title": "Catastrophe exposure",
+    "theme": "catastrophe",
+    "query": "How do the insurers describe catastrophe exposure, risk concentration and uncertainty?",
+    "tickers": [
+      "CB",
+      "TRV"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "catastrophe losses natural disasters risk concentration",
+      "catastrophe modeling weather uncertainty climate"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "reinsurance-2025-single",
+    "title": "The reinsurance boundary",
+    "theme": "reinsurance",
+    "query": "How do the insurers explain reinsurance arrangements and the risks those arrangements leave?",
+    "tickers": [
+      "CB"
+    ],
+    "years": [
+      2025
+    ],
+    "followups": [
+      "reinsurance recoverables reinsurers counterparty risk",
+      "reinsurance retention limits protection catastrophe"
+    ],
+    "as_of": null,
+    "split": "test",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "reinsurance-2024-2025-pair",
+    "title": "The reinsurance boundary",
+    "theme": "reinsurance",
+    "query": "How do the insurers explain reinsurance arrangements and the risks those arrangements leave?",
+    "tickers": [
+      "CB",
+      "TRV"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "reinsurance recoverables reinsurers counterparty risk",
+      "reinsurance retention limits protection catastrophe"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "cash-2025-single",
+    "title": "Cash flow and the narrative",
+    "theme": "cash",
+    "query": "What explanations and financial-statement notes support changes in operating cash flows?",
+    "tickers": [
+      "BAC"
+    ],
+    "years": [
+      2025
+    ],
+    "followups": [
+      "cash flows operating activities changes cash",
+      "cash provided operations financial statements notes"
+    ],
+    "as_of": null,
+    "split": "development",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  },
+  {
+    "id": "cash-2024-2025-pair",
+    "title": "Cash flow and the narrative",
+    "theme": "cash",
+    "query": "What explanations and financial-statement notes support changes in operating cash flows?",
+    "tickers": [
+      "BAC",
+      "JPM"
+    ],
+    "years": [
+      2024,
+      2025
+    ],
+    "followups": [
+      "cash flows operating activities changes cash",
+      "cash provided operations financial statements notes"
+    ],
+    "as_of": null,
+    "split": "test",
+    "evaluation_kind": "metadata_and_citation_checks_not_gold_entailment"
+  }
+]

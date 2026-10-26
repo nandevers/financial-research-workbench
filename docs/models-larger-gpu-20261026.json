@@ -1,0 +1,11 @@
+{
+  "checked_on":"2026-10-26",
+  "policy":"Downloadable Apache-2.0 model weights; self-hosted inference only. No private inference API. Colab GPU preparation; one model loaded at a time. Memory figures are planning estimates, not verified runtime measurements.",
+  "models":[
+    {"id":"Qwen/Qwen3.8-27B","name":"Qwen 3.8 27B","family":"Qwen","parameters_b":27,"license":"apache-2.0","source":"https://huggingface.co/Qwen/Qwen3.8-27B","role":"Current widely used model; financial evidence synthesis and temporal comparison","architecture":"qwen3_5","loader":"multimodal","quantization":"bnb4","recommended_gpu_gb":40,"requires_remote_code":false,"status":"not_run"},
+    {"id":"Nanbeige/Nanbeige4.3-33B","name":"Nanbeige 4.3 33B","family":"Nanbeige","parameters_b":33,"license":"apache-2.0","source":"https://huggingface.co/Nanbeige/Nanbeige4.3-33B","role":"Fresh reasoning and agent challenger","architecture":"causal","loader":"causal","quantization":"bnb4","recommended_gpu_gb":40,"requires_remote_code":true,"status":"not_run"},
+    {"id":"XHToken/Spark-X2.6-4B","name":"Spark X2.6 4B","family":"Spark","parameters_b":4,"license":"apache-2.0","source":"https://huggingface.co/XHToken/Spark-X2.6-4B","role":"Fresh compact-model efficiency challenger","architecture":"spark2_5","loader":"causal","quantization":"bnb4","recommended_gpu_gb":16,"requires_remote_code":true,"transformers_profile":"4.57.1","status":"not_run"},
+    {"id":"mistralai/Ministral-3-8B-Instruct-2512","name":"Ministral 3 8B","family":"Mistral","parameters_b":8.4,"license":"apache-2.0","source":"https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512","role":"Efficient instruction-following and structured-output baseline","architecture":"mistral3","loader":"mistral","quantization":"bf16_dequantize_fp8","recommended_gpu_gb":40,"requires_remote_code":false,"status":"not_run"},
+    {"id":"openai/gpt-oss-20b","name":"gpt-oss 20B","family":"gpt-oss","parameters_b":21,"license":"apache-2.0","source":"https://huggingface.co/openai/gpt-oss-20b","role":"Established open-weight reasoning baseline; runs from downloaded weights, not an OpenAI API","architecture":"gpt_oss","loader":"causal","quantization":"native_mxfp4","recommended_gpu_gb":40,"requires_remote_code":false,"status":"not_run"}
+  ]
+}
