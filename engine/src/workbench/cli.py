@@ -5,6 +5,19 @@ from datetime import datetime, timezone
 from .corpus import ROOT, LOCAL, PUBLIC, load_json, write_json, fetch_and_parse
 
 
+def select_comparison_cohort(runs):
+    measured = [run for run in runs if run.get('mode') == 'model']
+    versioned = [run for run in measured if run.get('hardware', {}).get('corpus_snapshot_sha256')]
+    if not versioned:
+        return measured, None
+    newest = max(versioned, key=lambda run: run['recorded_at'])
+    def key(run):
+        hardware = run.get('hardware', {})
+        return hardware.get('corpus_snapshot_sha256'), hardware.get('workflow_sha256')
+    hardware = newest['hardware']
+    return [run for run in measured if key(run) == key(newest)], {k: hardware.get(k) for k in ('corpus_snapshot_sha256', 'corpus_block_count', 'workflow_sha256')}
+
+
 def make_cases():
     specs = [
         ('liquidity', 'Liquidity under pressure', 'What do the filings disclose about liquidity risk, funding sources, deposits and liquidity buffers?', ['liquidity risk funding deposits liquidity coverage ratio', 'liquidity sources cash stress capital resources']),
@@ -28,6 +41,7 @@ def make_cases():
 
 
 def export_site():
+    from .calculations import prepare_reference_calculations
     corpus = load_json(LOCAL / 'corpus.json')
     cases = load_json(ROOT / 'evals/showcase.json')
     runs = [load_json(path) for path in (LOCAL / 'runs').glob('*.json')]
@@ -58,10 +72,11 @@ def export_site():
             if any(item not in allowed for item in finding['evidence_ids']):
                 raise ValueError('Refusing export with unresolved citation')
     model_config = load_json(ROOT / 'models.json')
+    comparison_runs, cohort = select_comparison_cohort(measured_runs)
     by_model = []
     for model in model_config['models']:
-        measured = [run for run in measured_runs if run.get('model_id') == model['id'] and not run.get('baseline')]
-        baselines = [run for run in measured_runs if run.get('model_id') == model['id'] and run.get('baseline')]
+        measured = [run for run in comparison_runs if run.get('model_id') == model['id'] and not run.get('baseline')]
+        baselines = [run for run in comparison_runs if run.get('model_id') == model['id'] and run.get('baseline')]
         status_file = LOCAL / 'models' / (model['id'].replace('/', '--') + '-status.json')
         failures = load_json(status_file).get('failures', []) if status_file.exists() else []
         validity = [run['verification']['citation_validity'] for run in measured if run['verification']['citation_validity'] is not None]
@@ -69,8 +84,13 @@ def export_site():
         by_model.append({**model, 'status': 'recorded' if measured else 'not_run', 'runs': len(measured), 'baseline_runs': len(baselines), 'failed_attempts': len(failures), 'tokens_per_second': sum(g['tokens_per_second'] for g in generation) / len(generation) if generation else None, 'peak_gpu_memory_gb': max((g['peak_gpu_memory_gb'] for g in generation), default=None), 'mean_duration_ms': sum(run['duration_ms'] for run in measured) / len(measured) if measured else None, 'citation_validity': sum(validity) / len(validity) if validity else None, 'claim_entailment': None})
     snapshot = {'schema_version': '1.0', 'title': 'Financial Research Workbench', 'author': 'Fernando Barbosa', 'prepared_at': datetime.now(timezone.utc).isoformat(), 'documents': documents, 'cases': cases, 'runs': runs, 'models': by_model, 'corpus_errors': corpus.get('errors', []), 'limitations': ['Source passages are verbatim bounded excerpts; PDF reading order can differ from the original report.', 'A valid citation reference is not a verified claim-entailment score.', 'Model comparisons are shown only after actual GPU results have been imported.', 'Some issuer reports have no independently verified publication date; strict as-of queries exclude them.'], 'benchmark': {'cases': len(load_json(ROOT / 'evals/cases.json')), 'measured_model_runs': sum(run.get('mode') == 'model' for run in runs), 'gold_entailment_labels': 0}}
     snapshot['withheld_memos'] = withheld
-    snapshot['benchmark']['measured_model_runs'] = sum(run.get('mode') == 'model' for run in measured_runs)
-    snapshot['benchmark']['measured_questions'] = len({run['case_id'] for run in measured_runs if run.get('mode') == 'model'})
+    snapshot['comparison_cohort'] = cohort
+    reviews_path = ROOT / 'evals/reviews.json'
+    snapshot['reviews'] = load_json(reviews_path) if reviews_path.exists() else []
+    snapshot['calculations'] = prepare_reference_calculations(corpus)
+    snapshot['benchmark']['recorded_model_runs_total'] = len([run for run in measured_runs if run.get('mode') == 'model'])
+    snapshot['benchmark']['measured_model_runs'] = len(comparison_runs)
+    snapshot['benchmark']['measured_questions'] = len({run['case_id'] for run in comparison_runs})
     write_json(PUBLIC / 'data/workbench.json', snapshot)
     print(f"Exported {len(documents)} documents, {len(runs)} recorded runs; {snapshot['benchmark']['measured_model_runs']} LLM runs")
 

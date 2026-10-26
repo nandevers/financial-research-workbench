@@ -6,6 +6,7 @@ import pytest
 from workbench.contracts import Calculation
 from workbench.research import build_graph, parse_response
 from workbench.retrieval import CorpusIndex
+from workbench.cli import select_comparison_cohort
 
 
 @pytest.fixture
@@ -68,3 +69,12 @@ def test_decimal_calculation_handles_zero_and_negative_baseline():
     calculation.earlier = Decimal('0')
     with pytest.raises(ValueError, match='zero baseline'):
         calculation.result()
+
+
+def test_historical_runs_do_not_contaminate_current_comparison():
+    old = dict(mode='model', recorded_at='2026-10-26T10:00:00Z', hardware=dict(corpus_snapshot_sha256='old', workflow_sha256='v1'))
+    current = dict(mode='model', recorded_at='2026-10-26T11:00:00Z', hardware=dict(corpus_snapshot_sha256='new', workflow_sha256='v2', corpus_block_count=26058))
+    same_cohort = dict(current, recorded_at='2026-10-26T10:30:00Z')
+    chosen, cohort = select_comparison_cohort([old, current, same_cohort])
+    assert chosen == [current, same_cohort]
+    assert cohort['corpus_block_count'] == 26058

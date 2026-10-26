@@ -52,11 +52,22 @@ class LocalGenerator:
                     raise RuntimeError('gpt-oss MXFP4 dequantization targets an 80GB GPU on this runtime. Native-compatible hardware can use its compact checkpoint.')
         self.tokenizer = tokenizer_cls.from_pretrained(spec['id'], revision=self.revision, trust_remote_code=spec['requires_remote_code'])
         self.model = loader.from_pretrained(spec['id'], **common)
+        if spec['quantization'] == 'fp16_dequantize_fp8':
+            # FP8 dequantization can materialize BF16 submodules despite dtype.
+            # Normalize the entire dequantized model for older T4 hardware.
+            self.model = self.model.to(dtype=torch.float16)
         self.metadata = {'model_id': spec['id'], 'revision': self.revision, 'license': license_id, 'quantization': spec['quantization'], 'gpu': torch.cuda.get_device_name(0), 'gpu_memory_gb': round(total_gb, 2), 'torch': torch.__version__, 'transformers': transformers.__version__, 'python': platform.python_version(), 'max_new_tokens': 768, 'context_policy': 'same bounded evidence; text only', 'inference': 'self_hosted_downloaded_weights'}
         self.metadata['workflow_sha256'] = hashlib.sha256(b''.join((ROOT / 'engine/src/workbench' / name).read_bytes() for name in ('research.py', 'retrieval.py', 'contracts.py'))).hexdigest()
+        self.metadata['inference_adapter_sha256'] = hashlib.sha256(b''.join((ROOT / 'engine/src/workbench' / name).read_bytes() for name in ('local_chat_model.py', 'gpu.py'))).hexdigest()
         self.measurements = []
 
     def __call__(self, prompt):
+        from .local_chat_model import LocalWeightsChatModel
+        if not hasattr(self, 'chat_model'):
+            self.chat_model = LocalWeightsChatModel(backend=self, model_id=self.spec['id'], revision=self.revision)
+        return self.chat_model.invoke(prompt).content
+
+    def _generate_text(self, prompt):
         import torch
         messages = [{'role': 'user', 'content': prompt}]
         if self.spec['loader'] in ('mistral', 'multimodal'):
@@ -143,7 +154,7 @@ def run_benchmark(model_id, limit=None, langsmith=False, revision=None, case_set
                 return {'key': 'citation_reference_validity', 'score': value, 'comment': 'ID membership only; not entailment.'}
             def runtime_metrics(run, example):
                 generation = (run.outputs or {}).get('generation', {})
-                return {'results': [{'key': key, 'score': generation[key]} for key in ('tokens_per_second', 'peak_gpu_memory_gb', 'generation_seconds') if key in generation]}
+                return {'results': [{'key': key, 'score': generation[key]} for key in ('tokens_per_second', 'peak_gpu_memory_gb', 'generation_seconds', 'input_tokens', 'output_tokens') if key in generation]}
             experiment = evaluate(target, data=dataset_name, evaluators=[reference_validity, runtime_metrics], experiment_prefix=model_slug, metadata=generator.metadata, max_concurrency=1)
             write_json(LOCAL / 'models' / f'{model_slug}-experiment.json', {'experiment_name': experiment.experiment_name, 'model_id': model_id, 'metadata': generator.metadata})
         else:

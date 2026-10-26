@@ -1,5 +1,6 @@
 """Validate a Colab results archive before copying records into the local engine."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -40,6 +41,10 @@ def import_results(path):
             validated.append((local / parts[2] / parts[3], data))
     # Complete validation before making any writes.
     for destination, data in validated:
+        if destination.exists() and destination.parent.name == 'models':
+            previous = destination.read_bytes()
+            digest = hashlib.sha256(previous).hexdigest()[:16]
+            write_json(local / 'status-history' / f'{digest}-{destination.name}', json.loads(previous))
         write_json(destination, data)
     print(f'Imported {len(validated)} validated records. Run workbench export, then npm run build.')
 

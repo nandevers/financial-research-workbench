@@ -1,0 +1,19 @@
+[
+  {
+    "title": "What citation checks missed",
+    "model_id": "ibm-granite/granite-4.1-8b",
+    "run_id": "liquidity-2025-single-0682a8f33e",
+    "case_id": "liquidity-2025-single",
+    "review_kind": "agent_spot_review_not_independent_gold",
+    "issue": "The initial memo said the filings did not provide specific LCR or NSFR values. The source report does provide them; that absence claim exceeded the retrieved evidence.",
+    "counterevidence": "Bank of America reports an average consolidated LCR of 112% and an average consolidated NSFR of 120% for the three months ended December 31, 2025.",
+    "source_ids": [
+      "bac-2025-12-31-0b9342694e7d",
+      "bac-2025-12-31-7db9aacc4250"
+    ],
+    "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000157/bac-20251231.htm",
+    "reference_check": "7 of 7 cited IDs existed. This did not verify the uncited absence statement.",
+    "correction": "The parser now includes inline-XBRL div paragraphs. The revised prompt limits absence claims to supplied passages and preserves quarterly-average time bases. A regression test covers narrative extraction.",
+    "boundary": "This is a documented spot review, not a gold accuracy score or evidence that all remaining claims are correct."
+  }
+]

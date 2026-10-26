@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "title": "Financial Research Workbench",
   "author": "Fernando Barbosa",
-  "prepared_at": "2026-10-26T14:19:25.745480+00:00",
+  "prepared_at": "2026-10-26T16:13:07.898707+00:00",
   "documents": [
     {
       "id": "bac-2026-06-30",
@@ -4146,7 +4146,50 @@
     "cases": 60,
     "measured_model_runs": 1,
     "gold_entailment_labels": 0,
+    "recorded_model_runs_total": 1,
     "measured_questions": 1
   },
-  "withheld_memos": []
+  "withheld_memos": [],
+  "comparison_cohort": null,
+  "reviews": [
+    {
+      "title": "What citation checks missed",
+      "model_id": "ibm-granite/granite-4.1-8b",
+      "run_id": "liquidity-2025-single-0682a8f33e",
+      "case_id": "liquidity-2025-single",
+      "review_kind": "agent_spot_review_not_independent_gold",
+      "issue": "The initial memo said the filings did not provide specific LCR or NSFR values. The source report does provide them; that absence claim exceeded the retrieved evidence.",
+      "counterevidence": "Bank of America reports an average consolidated LCR of 112% and an average consolidated NSFR of 120% for the three months ended December 31, 2025.",
+      "source_ids": [
+        "bac-2025-12-31-0b9342694e7d",
+        "bac-2025-12-31-7db9aacc4250"
+      ],
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000157/bac-20251231.htm",
+      "reference_check": "7 of 7 cited IDs existed. This did not verify the uncited absence statement.",
+      "correction": "The parser now includes inline-XBRL div paragraphs. The revised prompt limits absence claims to supplied passages and preserves quarterly-average time bases. A regression test covers narrative extraction.",
+      "boundary": "This is a documented spot review, not a gold accuracy score or evidence that all remaining claims are correct."
+    }
+  ],
+  "calculations": [
+    {
+      "id": "bac-gls-2024q4-2025q4",
+      "ticker": "BAC",
+      "label": "Average Global Liquidity Sources",
+      "earlier": "953",
+      "later": "975",
+      "earlier_period": "Q4 2024 average",
+      "later_period": "Q4 2025 average",
+      "absolute_change": "22",
+      "percentage_change": "2.31",
+      "unit": "USD billions",
+      "source_ids": [
+        "bac-2025-12-31-bed1b8b0995a"
+      ],
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000157/bac-20251231.htm",
+      "source_text": "Table 15 Average Global Liquidity Sources Three Months Ended December 31 (Dollars in billions) December 31 2025 December 31 2024 Bank entities $ 789 $ 777 Nonbank and other entities (1) 186 176 Total Average Global Liquidity Sources $ 975 $ 953",
+      "recorded_at": "2026-10-26T16:13:07.963693+00:00",
+      "executor": "langchain_decimal_tool_after_inference",
+      "note": "One curated table mapping. Independent arithmetic reference; not supplied to the recorded model generations."
+    }
+  ]
 }

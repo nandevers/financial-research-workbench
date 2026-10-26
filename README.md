@@ -1,5 +1,7 @@
 # Financial Research & Risk Intelligence Workbench
 
+[Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandevers/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
+
 A portfolio project by Fernando Barbosa: inspect authentic bank and insurer disclosures, follow a reproducible research workflow, and compare five downloaded open models. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab.
 
 **Current status:** 30 issuer reports parsed; 26,058 source blocks; 12 extractive research runs. One initial Granite smoke workflow succeeded, with one baseline schema failure; a broader comparison remains in progress. The interface does not fabricate answers, rankings, evaluation scores, or LangSmith traces.
@@ -78,3 +80,7 @@ See `docs/DATA_AND_LICENSES.md` for source and redistribution boundaries.
 ## Initial smoke findings
 
 The original 13,965-block snapshot is preserved locally for audit. Initial execution found missing Torchvision support for multimodal processors, unsupported packed Byte weights in Spark custom attention, a Mistral tokenizer padding mismatch, and one output-token-limit JSON failure. The runtime profiles and prompt were corrected before the broader rerun. HTML parsing now captures inline-XBRL div paragraphs, increasing the corpus to 26,058 blocks. These are engineering observations, not model quality rankings.
+
+The comparison view plots measured tokens per second against peak allocated GPU memory and opens the selected model's recorded memo. See [the documented initial failure](docs/FAILURE_ANALYSIS.md) for why valid source references alone cannot establish factual accuracy. Older source snapshots and workflow versions are excluded from the current comparison summary.
+
+The native LangChain chat-model adapter attaches measured input/output token usage to new LLM traces. The initial smoke used a generic runnable and custom runtime feedback; generic LangSmith token columns for those older runs can remain zero. The actual token measurements are retained in each run's `generation` record.
