@@ -1,10 +1,10 @@
 # Financial Research & Risk Intelligence Workbench
 
-[Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandevers/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
+[Explore the static workbench](https://nandevers.github.io/financial-research-workbench/) · [Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandevers/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
 
 A portfolio project by Fernando Barbosa: inspect authentic bank and insurer disclosures, follow a reproducible research workflow, and compare five downloaded open models. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab.
 
-**Current status:** 30 issuer reports parsed; 26,058 source blocks; 12 extractive research runs. One initial Granite smoke workflow succeeded, with one baseline schema failure; a broader comparison remains in progress. The interface does not fabricate answers, rankings, evaluation scores, or LangSmith traces.
+**Current status:** 30 issuer reports, 26,058 source blocks, 12 extractive investigations, and a completed five-model smoke comparison over two banking/insurance questions. The corrected profiles produced 14 schema-valid memos and 6 schema failures across 20 generation attempts. All published memo references resolved to source IDs. Claim accuracy remains unmeasured; valid citations do not establish entailment. Earlier compatibility failures and the original smoke remain preserved separately.
 
 ## Run locally
 
@@ -34,7 +34,7 @@ Model cards and licenses checked **26 October 2026**:
 - [Ministral 3 3B Instruct](https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512): Apache 2.0; compact structured-output baseline.
 - [Granite 4.1 8B](https://huggingface.co/ibm-granite/granite-4.1-8b): Apache 2.0; enterprise-oriented extraction and RAG baseline.
 
-This is a practical current checkpoint selection, not a claim that these are the five highest-ranked models worldwide. Qwen and MiMo are related: do not present them as independent architecture families. The initial larger-GPU shortlist is preserved in `docs/models-larger-gpu-20261026.json`; the default five target an available Colab T4. Memory fit is an estimate until measured. Qwen, MiMo and Granite use NF4. Spark uses native FP16 after its custom attention failed on packed 4-bit Byte weights. Ministral dequantizes FP8 to FP16 for older GPU compatibility. All model weights are downloaded from official Hugging Face repositories, with exact commit revision and actual runtime versions recorded at execution. Spark's custom modeling code is pinned to that revision.
+This is a practical current checkpoint selection, not a claim that these are the five highest-ranked models worldwide. Qwen and MiMo are related: do not present them as independent architecture families. The initial larger-GPU shortlist is preserved in `docs/models-larger-gpu-20261026.json`; all five default checkpoints completed generation on a free Colab T4 in the recorded smoke test. Qwen, MiMo and Granite use NF4. Spark uses native FP16 after its custom attention failed on packed 4-bit Byte weights. Ministral dequantizes FP8 to FP16 for older GPU compatibility. All model weights are downloaded from official Hugging Face repositories, with exact commit revision and actual runtime versions recorded at execution. Spark's custom modeling code is pinned to that revision.
 
 ```powershell
 .venv/Scripts/python.exe scripts/prepare_colab.py
@@ -52,7 +52,7 @@ No private inference API or model-provider key is used. Optional **LangSmith** t
 
 ## Architecture
 
-- **LangChain:** an actual typed filing-search tool and Runnable generation adapter.
+- **LangChain:** typed filing-search and Decimal calculation tools, plus a native chat-model adapter for downloaded weights.
 - **LangGraph:** declared task decomposition → retrieval → institution/period coverage check → one bounded additional search when needed → structured memo → reference verification. SQLite checkpoints persist local state. Planning is deterministic to keep model comparisons controlled; this is not an autonomous model-planned tool-use claim.
 - **LangSmith:** optional datasets, model experiments, workflow traces and a deterministic citation-ID evaluator. No private LLM judge is configured. Invalid source references remain measured failures; their memos are withheld from publication pending review.
 - **Retrieval:** transparent TF-IDF sparse baseline with issuer, fiscal-year and strict publication-date filtering. It is not a neural embedding or semantic-reranking implementation.
@@ -63,7 +63,7 @@ No private inference API or model-provider key is used. Optional **LangSmith** t
 
 `evals/cases.json` contains 60 generated research task specifications; `showcase.json` selects 12. The 40/20 development/test labels are organizational only: questions overlap by theme, so they are **not an independent gold holdout benchmark**. No human gold entailment labels exist yet.
 
-Citation-ID membership establishes that a source reference exists. It does **not** establish claim support, numerical accuracy, completeness, fair institutional comparability, or investment suitability. Those metrics remain unset. The deterministic Decimal calculation helper is tested but is not yet integrated into model-driven table extraction. Report dates that cannot be verified are excluded from strict as-of queries. Source whitespace is normalized; PDF reading order can differ from the page.
+Citation-ID membership establishes that a source reference exists. It does **not** establish claim support, numerical accuracy, completeness, fair institutional comparability, or investment suitability. Those metrics remain unset. The deterministic Decimal tool supports one curated, source-checked BAC liquidity calculation after inference. This calculation is independent of model output; it does not demonstrate general model-driven table extraction. Report dates that cannot be verified are excluded from strict as-of queries. Source whitespace is normalized; PDF reading order can differ from the page.
 
 ## Verification and publication
 
@@ -73,7 +73,7 @@ npm run test:web
 npm run build
 ```
 
-The GitHub Pages workflow is **manual** (`workflow_dispatch`). Create a dedicated GitHub repository after local review, push only project sources and the bounded public snapshot, select GitHub Actions as the Pages source, then run the workflow. Default path: `https://nandevers.github.io/financial-research-workbench/`. Set `PAGES_BASE=/` for a root user-site deployment. Deployment does not launch inference or consume LangSmith traces.
+The GitHub Pages workflow is **manual** (`workflow_dispatch`). Only project sources and the bounded public snapshot are published. GitHub Actions builds and deploys the reviewed static snapshot; subsequent releases require manually running the workflow. Default path: `https://nandevers.github.io/financial-research-workbench/`. Set `PAGES_BASE=/` for a root user-site deployment. Deployment does not launch inference or consume LangSmith traces.
 
 See `docs/DATA_AND_LICENSES.md` for source and redistribution boundaries.
 
@@ -84,3 +84,7 @@ The original 13,965-block snapshot is preserved locally for audit. Initial execu
 The comparison view plots measured tokens per second against peak allocated GPU memory and opens the selected model's recorded memo. See [the documented initial failure](docs/FAILURE_ANALYSIS.md) for why valid source references alone cannot establish factual accuracy. Older source snapshots and workflow versions are excluded from the current comparison summary.
 
 The native LangChain chat-model adapter attaches measured input/output token usage to new LLM traces. The initial smoke used a generic runnable and custom runtime feedback; generic LangSmith token columns for those older runs can remain zero. The actual token measurements are retained in each run's `generation` record.
+
+## Recorded smoke outcomes
+
+Qwen produced 3 schema-valid records and 1 failure; MiMo 0 and 4; Spark 4 and 0; corrected Ministral 3 and 1; Granite 4 and 0. Each checkpoint attempted the same two questions with baseline and workflow variants. These are small-sample output-contract outcomes, not general model accuracy rankings. The efficiency chart includes measured generation calls that produced invalid JSON, marked with a hollow point when no workflow memo was usable.

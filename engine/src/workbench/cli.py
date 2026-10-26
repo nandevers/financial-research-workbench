@@ -78,10 +78,15 @@ def export_site():
         measured = [run for run in comparison_runs if run.get('model_id') == model['id'] and not run.get('baseline')]
         baselines = [run for run in comparison_runs if run.get('model_id') == model['id'] and run.get('baseline')]
         status_file = LOCAL / 'models' / (model['id'].replace('/', '--') + '-status.json')
-        failures = load_json(status_file).get('failures', []) if status_file.exists() else []
+        status = load_json(status_file) if status_file.exists() else {}
+        status_metadata = status.get('metadata', {})
+        matches_cohort = cohort is None or (status_metadata.get('corpus_snapshot_sha256') == cohort['corpus_snapshot_sha256'] and status_metadata.get('workflow_sha256') == cohort['workflow_sha256'])
+        failures = status.get('failures', []) if matches_cohort else []
         validity = [run['verification']['citation_validity'] for run in measured if run['verification']['citation_validity'] is not None]
         generation = [run['generation'] for run in measured if run.get('generation')]
-        by_model.append({**model, 'status': 'recorded' if measured else 'not_run', 'runs': len(measured), 'baseline_runs': len(baselines), 'failed_attempts': len(failures), 'tokens_per_second': sum(g['tokens_per_second'] for g in generation) / len(generation) if generation else None, 'peak_gpu_memory_gb': max((g['peak_gpu_memory_gb'] for g in generation), default=None), 'mean_duration_ms': sum(run['duration_ms'] for run in measured) / len(measured) if measured else None, 'citation_validity': sum(validity) / len(validity) if validity else None, 'claim_entailment': None})
+        generation += [failure['generation'] for failure in failures if failure.get('generation') and not failure.get('baseline')]
+        failure_summaries = [{k: failure[k] for k in ('case_id', 'baseline', 'error', 'output_limit_reached') if k in failure} for failure in failures]
+        by_model.append({**model, 'status': 'recorded' if measured else 'failed' if failures else 'not_run', 'runs': len(measured), 'baseline_runs': len(baselines), 'failed_attempts': len(failures), 'failures': failure_summaries, 'tokens_per_second': sum(g['tokens_per_second'] for g in generation) / len(generation) if generation else None, 'peak_gpu_memory_gb': max((g['peak_gpu_memory_gb'] for g in generation), default=None), 'mean_duration_ms': sum(run['duration_ms'] for run in measured) / len(measured) if measured else None, 'citation_validity': sum(validity) / len(validity) if validity else None, 'claim_entailment': None})
     snapshot = {'schema_version': '1.0', 'title': 'Financial Research Workbench', 'author': 'Fernando Barbosa', 'prepared_at': datetime.now(timezone.utc).isoformat(), 'documents': documents, 'cases': cases, 'runs': runs, 'models': by_model, 'corpus_errors': corpus.get('errors', []), 'limitations': ['Source passages are verbatim bounded excerpts; PDF reading order can differ from the original report.', 'A valid citation reference is not a verified claim-entailment score.', 'Model comparisons are shown only after actual GPU results have been imported.', 'Some issuer reports have no independently verified publication date; strict as-of queries exclude them.'], 'benchmark': {'cases': len(load_json(ROOT / 'evals/cases.json')), 'measured_model_runs': sum(run.get('mode') == 'model' for run in runs), 'gold_entailment_labels': 0}}
     snapshot['withheld_memos'] = withheld
     snapshot['comparison_cohort'] = cohort
