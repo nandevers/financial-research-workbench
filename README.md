@@ -2,7 +2,7 @@
 
 [Explore the static workbench](https://nandevers.github.io/financial-research-workbench/) · [Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandevers/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
 
-A portfolio project by Fernando Barbosa: inspect authentic bank and insurer disclosures, follow a reproducible research workflow, and compare five downloaded open models. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab.
+A portfolio project by Fernando Barbosa: inspect authentic bank and insurer disclosures, follow a reproducible research workflow, and compare five downloaded open models. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab. The interface follows the [portfolio design system](docs/DESIGN_SYSTEM.md): white surfaces, navy and blue accents, Georgia headings, and Segoe UI text.
 
 **Current status:** 30 issuer reports, 26,058 source blocks, 12 extractive investigations, and a completed five-model smoke comparison over two banking/insurance questions. The corrected profiles produced 14 schema-valid memos and 6 schema failures across 20 generation attempts. All published memo references resolved to source IDs. Claim accuracy remains unmeasured; valid citations do not establish entailment. Earlier compatibility failures and the original smoke remain preserved separately.
 
