@@ -1,0 +1,31 @@
+import {useEffect,useState} from 'react';
+import type {Run} from '../types';
+import {duration} from '../lib/case-files';
+import {Play,Pause,ChevronLeft,ChevronRight} from 'lucide-react';
+
+type Step={name:string;kind:string;detail:string;ms?:number;eventIndex?:number};
+export default function ExecutionTheater({run,baseline}:{run:Run;baseline?:Run}) {
+  const [step,setStep]=useState(0),[playing,setPlaying]=useState(false),[speed,setSpeed]=useState(1100),[overlay,setOverlay]=useState(false);
+  const stages:Step[]=run.events.map((e,i)=>({name:e.stage,detail:e.detail,ms:e.duration_ms,eventIndex:i,kind:e.stage==='Generate research memo'?'Downloaded model':e.stage==='Retrieve original evidence'||e.stage==='Search missing periods'?'LangChain search':e.stage==='Verify source references'?'Reference rules':'Deterministic'}));
+  // Coverage checking is an actual graph node but had no standalone timer/event.
+  if(!run.baseline)stages.splice(2,0,{name:'Check period coverage',kind:'Graph rule',detail:`Graph node from the recorded workflow definition. ${run.coverage_gaps?`${run.coverage_gaps.length} final coverage gaps.`:'No final coverage snapshot was recorded.'} No standalone timing was recorded.`});
+  const selected=stages[step]||stages[0],total=stages.length;
+  useEffect(()=>{setPlaying(false);setStep(0);setOverlay(false)},[run.id]);
+  useEffect(()=>{if(!playing)return;const t=setInterval(()=>setStep(s=>{if(s>=total-1){setPlaying(false);return s}return s+1}),speed);return()=>clearInterval(t)},[playing,total,speed]);
+  const height=230,width=Math.max(780,total*125),gap=(width-120)/Math.max(1,total-1);
+  const retrieveIndex=stages.findIndex(s=>s.name==='Retrieve original evidence'),memoIndex=stages.findIndex(s=>s.name==='Generate research memo');
+  function toggle(){if(!playing&&step===total-1)setStep(0);setPlaying(!playing)}
+  return <section className="cf-theater"><div className="cf-section-title"><div><span className="cf-kicker">Recorded execution / {run.baseline?'baseline':'workflow'}</span><h2>Inside the research.</h2></div><span className="cf-count">{duration(run.duration_ms)} workflow duration</span></div>
+    <p className="cf-caption">Explore the actual graph route. Playback advances through recorded stages at an accelerated, equal-step pace.</p>
+    <div className="cf-theater-controls"><button className="cf-primary" onClick={toggle}>{playing?<Pause size={15}/>:<Play size={15}/>} {playing?'Pause':'Replay stages'}</button><button className="cf-secondary" disabled={step===0} aria-label="Previous execution stage" onClick={()=>{setPlaying(false);setStep(s=>Math.max(0,s-1))}}><ChevronLeft size={16}/></button><button className="cf-secondary" disabled={step===total-1} aria-label="Next execution stage" onClick={()=>{setPlaying(false);setStep(s=>Math.min(total-1,s+1))}}><ChevronRight size={16}/></button><label>Replay pace<select aria-label="Execution replay pace" value={speed} onChange={e=>setSpeed(Number(e.target.value))}><option value={1800}>Slow</option><option value={1100}>Standard</option><option value={500}>Fast</option></select></label></div>
+    {baseline&&!run.baseline&&<label className="cf-overlay-toggle"><input type="checkbox" checked={overlay} onChange={e=>setOverlay(e.target.checked)}/>Overlay the recorded baseline route</label>}
+    <div className="cf-plot-scroll"><svg viewBox={`0 0 ${width} ${height}`} style={{minWidth:width}} role="group" aria-label={`${run.baseline?'Baseline':'LangGraph'} route with ${total} stages. Use stage controls or the selector below.`}>
+      {overlay&&baseline&&retrieveIndex>=0&&memoIndex>retrieveIndex&&<g><path className="cf-baseline-overlay" d={`M${60+retrieveIndex*gap} 92 C${60+retrieveIndex*gap} 24,${60+memoIndex*gap} 24,${60+memoIndex*gap} 92`}/><text x={60+(retrieveIndex+memoIndex)/2*gap} y="25" textAnchor="middle" className="cf-axis-note">Recorded baseline / {duration(baseline.duration_ms)} total</text></g>}
+      {stages.slice(1).map((s,i)=><path key={i} d={`M${60+i*gap+24} 92 H${60+(i+1)*gap-24}`} className={`cf-stage-edge ${i<step?'is-lit':''}`}/>)}
+      {stages.map((s,i)=><g key={`${s.name}-${i}`} role="button" tabIndex={0} aria-label={`Inspect stage ${i+1}: ${s.name}`} className={`cf-stage-node ${i===step?'is-current':i<step?'is-complete':''}`} onClick={()=>{setPlaying(false);setStep(i)}} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setPlaying(false);setStep(i)}}}><circle cx={60+i*gap} cy="92" r="24"/><text x={60+i*gap} y="97" textAnchor="middle">{i+1}</text><text x={60+i*gap} y="143" textAnchor="middle" className="cf-stage-name">{s.name.split(' ').slice(0,2).join(' ')}</text><text x={60+i*gap} y="162" textAnchor="middle" className="cf-stage-name">{s.name.split(' ').slice(2).join(' ')}</text><text x={60+i*gap} y="191" textAnchor="middle" className="cf-axis-note">{s.ms===undefined?'Not separately timed':duration(s.ms)}</text></g>)}
+    </svg></div>
+    <label className="cf-stage-range">Stage {step+1} of {total}<input type="range" min="0" max={Math.max(0,total-1)} value={step} aria-label="Recorded execution stage" onChange={e=>{setPlaying(false);setStep(Number(e.target.value))}}/></label>
+    {selected&&<div className="cf-stage-detail" aria-live="polite"><span className="cf-kicker">{selected.kind}</span><h3>{selected.name}</h3><p>{selected.detail}</p>{selected.ms!==undefined&&<strong>{duration(selected.ms)} measured stage time</strong>}{selected.name==='Scope & plan'&&run.subqueries&&<ol>{run.subqueries.map(q=><li key={q}>{q}</li>)}</ol>}{selected.name==='Verify source references'&&<p>{run.verification.note}</p>}</div>}
+    <details className="cf-disclosure"><summary>Route and measurement boundaries</summary><p>The baseline runs plan → retrieve → synthesize → verify. The workflow adds a coverage check and, when its event is present, one bounded additional search. The coverage node is identified from the graph definition; it has no independent timing. Model download, loading and corpus preparation are outside these measured workflow timings.</p><p>LangChain supplies the filing-search boundary. LangGraph controls the route. Verification checks source-ID membership; claim accuracy remains unmeasured. Replay does not generate new answers.</p></details>
+  </section>;
+}

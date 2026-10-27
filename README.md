@@ -2,13 +2,37 @@
 
 [Explore the static workbench](https://nandevers.github.io/financial-research-workbench/) · [Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandevers/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
 
-A portfolio project by Fernando Barbosa: inspect authentic bank and insurer disclosures, follow a reproducible research workflow, and compare five downloaded open models. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab. The interface follows the [portfolio design system](docs/DESIGN_SYSTEM.md): white surfaces, navy and blue accents, Georgia headings, and Segoe UI text.
+A portfolio project by Fernando Barbosa. **Can openly available AI make financial reports easier to understand while showing where its answers come from?** This project brings together real bank and insurer reports, retrieves relevant passages and asks models to draft short, source-linked explanations that a reader can inspect. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab. The interface follows the [portfolio design system](docs/DESIGN_SYSTEM.md): white surfaces, navy and blue accents, Georgia headings, and Segoe UI text.
 
-**Current status:** 30 issuer reports, 26,058 source blocks, 12 extractive investigations, and a completed five-model smoke comparison over two banking/insurance questions. The corrected profiles produced 14 schema-valid memos and 6 schema failures across 20 generation attempts. All published memo references resolved to source IDs. Claim accuracy remains unmeasured; valid citations do not establish entailment. Earlier compatibility failures and the original smoke remain preserved separately.
+**Current result:** 30 original reports, 26,058 searchable passages and 12 source-only investigations. Five answer-writing models each tried two banking/insurance questions through two research methods, producing **20 attempts: 14 answers in the required format and 6 format failures**. This is a small pilot, not a factual-accuracy ranking. All published memo references resolved to supplied source IDs, which does not establish that those sources support every claim. Earlier compatibility failures and historical runs remain separate.
+
+## Explore the research
+
+- [Start here](https://nandevers.github.io/financial-research-workbench/#/overview): the business goal, actual pilot results and a clickable question-to-source-to-answer journey.
+- [Research cases](https://nandevers.github.io/financial-research-workbench/#/research/liquidity-2024-2025-pair): paired answers, source maps, recorded execution steps and failures.
+- [Model comparison](https://nandevers.github.io/financial-research-workbench/#/models): understand simple search versus guided research before exploring the results.
+- [Evaluation lab](https://nandevers.github.io/financial-research-workbench/#/evaluation?case=liquidity-2024-2025-pair): five-way A–E comparison, session-only blind review, recorded generation metrics, source prompt and evaluator inspection. Native LangSmith records open separately and require account access; no credential is shipped to the site.
+- [Named entities](https://nandevers.github.io/financial-research-workbench/#/entities): interactive, explicitly hand-tagged source illustrations and a separate five-model extraction comparison plan.
+- [How it works](https://nandevers.github.io/financial-research-workbench/#/method): plain-language methodology, a glossary, study limitations and the next improvements.
+
+The guided route performs fixed related searches and checks company/year evidence coverage before a bounded round of targeted gap searches. Both routes use the same writing prompt. Candidate prompt tests remain unexecuted drafts.
+
+## Named-entity research track
+
+Named-entity recognition finds the exact names of people, organizations and places inside a passage. It is separate from generating a research answer. The candidates are [DistilBERT NER](https://huggingface.co/dslim/distilbert-NER), [BERT NER](https://huggingface.co/dslim/bert-base-NER), [GLiNER Medium v2.1](https://huggingface.co/urchade/gliner_medium-v2.1), [NuNER Zero](https://huggingface.co/numind/NuNER_Zero) and [GLiNER2 Base](https://huggingface.co/fastino/gliner2-base-v1). Model cards and MIT/Apache-2.0 licenses were checked on 27 October 2026. These are extraction specialists, not finance-trained models.
+
+**No NER predictions or independent reference labels have been recorded.** Every performance field remains unmeasured. The highlighted report examples are editorial illustrations, not model output or gold labels. The downloadable draft protocol separates a shared person/organization/place task from extra date/amount/percentage capabilities, and requires independently reviewed labels and a document-separated holdout before precision, recall or F1 can be reported. No new models are downloaded by the website.
 
 ## Run locally
 
-Node 22+ and Python 3.11+ are required. Windows commands:
+For the static explorer, Node 22+ is sufficient. The committed public snapshot runs without Python, model weights or API keys:
+
+```powershell
+npm ci
+npm run dev
+```
+
+Open the URL printed by Vite, including `/financial-research-workbench/`. To rebuild the research corpus and offline engine, use Python 3.11+ as well. Windows commands:
 
 ```powershell
 python -m venv .venv
@@ -53,7 +77,7 @@ No private inference API or model-provider key is used. Optional **LangSmith** t
 ## Architecture
 
 - **LangChain:** typed filing-search and Decimal calculation tools, plus a native chat-model adapter for downloaded weights.
-- **LangGraph:** declared task decomposition → retrieval → institution/period coverage check → one bounded additional search when needed → structured memo → reference verification. SQLite checkpoints persist local state. Planning is deterministic to keep model comparisons controlled; this is not an autonomous model-planned tool-use claim.
+- **LangGraph:** declared task decomposition → retrieval → institution/period coverage check → one bounded round of additional searches, one per missing institution/year pair → structured memo → reference verification. SQLite checkpoints persist local state. Planning is deterministic to keep model comparisons controlled; this is not an autonomous model-planned tool-use claim.
 - **LangSmith:** optional datasets, model experiments, workflow traces and a deterministic citation-ID evaluator. No private LLM judge is configured. Invalid source references remain measured failures; their memos are withheld from publication pending review.
 - **Retrieval:** transparent TF-IDF sparse baseline with issuer, fiscal-year and strict publication-date filtering. It is not a neural embedding or semantic-reranking implementation.
 - **Corpus:** original HTML/PDF reports from Bank of America, JPMorgan Chase, Chubb and Travelers. Narrative, tables, period metadata, page provenance and SHA-256 fingerprints are retained. PDFs are extracted text, not layout-perfect structured tables.
