@@ -1,0 +1,1332 @@
+{
+  "schema_version": 1,
+  "source_result_sha256": "e59e785262b1b8c88f8918db38fa201ee9d6185ff5bf0ef53be124f8ab941302",
+  "corpus_content_sha256": "94a99ada6ad2e2b32e77d83b7244858ce3bef78c5fa73014a4b4e5432832c5a4",
+  "reference_sha256": "852a45a8fbd118dde63268e208ec5e37e9f09f07902e4160b465ba0dd05f4eab",
+  "heldout_ner_passages": 32,
+  "heldout_retrieval_queries": 9,
+  "development_retrieval_queries": 1,
+  "scope": "Nine test queries; known-positive blocks in the held-out reference fold only. Development evidence excluded. Unjudged blocks are not negatives.",
+  "models": [
+    {
+      "id": "dslim/distilbert-NER",
+      "name": "DistilBERT NER",
+      "configuration_sha256": "ea4aed734cbc028a58bcbd846539f2e4dc70ee89d634f3184086bebce63d9a08",
+      "tagging": {
+        "tp": 67,
+        "fp": 214,
+        "fn": 50,
+        "uncertain_reference_entities": 0,
+        "precision": 0.23843416370106763,
+        "recall": 0.5726495726495726,
+        "f1": 0.33668341708542715
+      },
+      "lexical": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "entity_assisted": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.2037037037037037,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.1148148148148148
+      },
+      "recall_improved_test_queries": 1,
+      "recall_worse_test_queries": 0,
+      "queries": [
+        {
+          "id": "ner-query-01-fdic",
+          "query": "Which passages name the Federal Deposit Insurance Corporation or FDIC?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-02-bofase-ecb",
+          "query": "Which passages mention BofASE together with the European Central Bank?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-03-broker-subsidiaries",
+          "query": "Find the passages naming Merrill Lynch International and BofA Securities Europe SA.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-04-first-republic",
+          "query": "Where do these passages mention First Republic Bank or First Republic?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-05-japan-australia",
+          "query": "Which country-exposure passages name both Japan and Australia?",
+          "split": "development",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-06-dimon",
+          "query": "Find passages naming James Dimon or Jamie Dimon.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-07-moynihan",
+          "query": "Where is Brian T. Moynihan named?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-08-schnitzer",
+          "query": "Find references that name Alan D. Schnitzer.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-09-greenberg",
+          "query": "Which passages name Evan G. Greenberg?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 1.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.5,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 3,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-10-chubb-switzerland",
+          "query": "Find passages naming Chubb Limited and Switzerland.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dslim/bert-base-NER",
+      "name": "BERT NER",
+      "configuration_sha256": "c4a54b4804e5cf46e926babd0cf76ee9b3fc64692d537bc69f085a58d3ca342b",
+      "tagging": {
+        "tp": 87,
+        "fp": 60,
+        "fn": 30,
+        "uncertain_reference_entities": 0,
+        "precision": 0.5918367346938775,
+        "recall": 0.7435897435897436,
+        "f1": 0.6590909090909091
+      },
+      "lexical": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "entity_assisted": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.2222222222222222,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.11851851851851852
+      },
+      "recall_improved_test_queries": 1,
+      "recall_worse_test_queries": 0,
+      "queries": [
+        {
+          "id": "ner-query-01-fdic",
+          "query": "Which passages name the Federal Deposit Insurance Corporation or FDIC?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-02-bofase-ecb",
+          "query": "Which passages mention BofASE together with the European Central Bank?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-03-broker-subsidiaries",
+          "query": "Find the passages naming Merrill Lynch International and BofA Securities Europe SA.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-04-first-republic",
+          "query": "Where do these passages mention First Republic Bank or First Republic?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-05-japan-australia",
+          "query": "Which country-exposure passages name both Japan and Australia?",
+          "split": "development",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-06-dimon",
+          "query": "Find passages naming James Dimon or Jamie Dimon.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-07-moynihan",
+          "query": "Where is Brian T. Moynihan named?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-08-schnitzer",
+          "query": "Find references that name Alan D. Schnitzer.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-09-greenberg",
+          "query": "Which passages name Evan G. Greenberg?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-10-chubb-switzerland",
+          "query": "Find passages naming Chubb Limited and Switzerland.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "urchade/gliner_medium-v2.1",
+      "name": "GLiNER Medium v2.1",
+      "configuration_sha256": "1210400f6a2cb3d7a8b5b1b4e3059907d0d7dbadd03ad63f738edaa8de95250f",
+      "tagging": {
+        "tp": 108,
+        "fp": 30,
+        "fn": 9,
+        "uncertain_reference_entities": 0,
+        "precision": 0.782608695652174,
+        "recall": 0.9230769230769231,
+        "f1": 0.8470588235294118
+      },
+      "lexical": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "entity_assisted": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "recall_improved_test_queries": 0,
+      "recall_worse_test_queries": 0,
+      "queries": [
+        {
+          "id": "ner-query-01-fdic",
+          "query": "Which passages name the Federal Deposit Insurance Corporation or FDIC?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-02-bofase-ecb",
+          "query": "Which passages mention BofASE together with the European Central Bank?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-03-broker-subsidiaries",
+          "query": "Find the passages naming Merrill Lynch International and BofA Securities Europe SA.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-04-first-republic",
+          "query": "Where do these passages mention First Republic Bank or First Republic?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-05-japan-australia",
+          "query": "Which country-exposure passages name both Japan and Australia?",
+          "split": "development",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-06-dimon",
+          "query": "Find passages naming James Dimon or Jamie Dimon.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-07-moynihan",
+          "query": "Where is Brian T. Moynihan named?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-08-schnitzer",
+          "query": "Find references that name Alan D. Schnitzer.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-09-greenberg",
+          "query": "Which passages name Evan G. Greenberg?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-10-chubb-switzerland",
+          "query": "Find passages naming Chubb Limited and Switzerland.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "numind/NuNER_Zero",
+      "name": "NuNER Zero",
+      "configuration_sha256": "6f870a7974a7acb66b4a18bac20863beb35cde590d64d378f3ef44ad22b28e34",
+      "tagging": {
+        "tp": 104,
+        "fp": 51,
+        "fn": 13,
+        "uncertain_reference_entities": 0,
+        "precision": 0.6709677419354839,
+        "recall": 0.8888888888888888,
+        "f1": 0.7647058823529411
+      },
+      "lexical": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "entity_assisted": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.0962962962962963
+      },
+      "recall_improved_test_queries": 0,
+      "recall_worse_test_queries": 0,
+      "queries": [
+        {
+          "id": "ner-query-01-fdic",
+          "query": "Which passages name the Federal Deposit Insurance Corporation or FDIC?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-02-bofase-ecb",
+          "query": "Which passages mention BofASE together with the European Central Bank?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-03-broker-subsidiaries",
+          "query": "Find the passages naming Merrill Lynch International and BofA Securities Europe SA.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-04-first-republic",
+          "query": "Where do these passages mention First Republic Bank or First Republic?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-05-japan-australia",
+          "query": "Which country-exposure passages name both Japan and Australia?",
+          "split": "development",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-06-dimon",
+          "query": "Find passages naming James Dimon or Jamie Dimon.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-07-moynihan",
+          "query": "Where is Brian T. Moynihan named?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-08-schnitzer",
+          "query": "Find references that name Alan D. Schnitzer.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-09-greenberg",
+          "query": "Which passages name Evan G. Greenberg?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-10-chubb-switzerland",
+          "query": "Find passages naming Chubb Limited and Switzerland.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fastino/gliner2-base-v1",
+      "name": "GLiNER2 Base",
+      "configuration_sha256": "d8ace9e3a7f2a79d50dd30f762e9a24dba745b2847e9f1b2a14a1fefbae896b9",
+      "tagging": {
+        "tp": 108,
+        "fp": 51,
+        "fn": 9,
+        "uncertain_reference_entities": 0,
+        "precision": 0.6792452830188679,
+        "recall": 0.9230769230769231,
+        "f1": 0.782608695652174
+      },
+      "lexical": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "entity_assisted": {
+        "test_queries": 9,
+        "development_queries": 1,
+        "aggregation": "Mean over held-out test queries only. Development query feedback uses separate keys.",
+        "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy.",
+        "mean_test_known_positive_recall_at_5": 0.16666666666666666,
+        "mean_test_first_known_positive_reciprocal_rank_at_5": 0.08703703703703704
+      },
+      "recall_improved_test_queries": 0,
+      "recall_worse_test_queries": 0,
+      "queries": [
+        {
+          "id": "ner-query-01-fdic",
+          "query": "Which passages name the Federal Deposit Insurance Corporation or FDIC?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-02-bofase-ecb",
+          "query": "Which passages mention BofASE together with the European Central Bank?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-03-broker-subsidiaries",
+          "query": "Find the passages naming Merrill Lynch International and BofA Securities Europe SA.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-04-first-republic",
+          "query": "Where do these passages mention First Republic Bank or First Republic?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 1,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-05-japan-australia",
+          "query": "Which country-exposure passages name both Japan and Australia?",
+          "split": "development",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 1.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-06-dimon",
+          "query": "Find passages naming James Dimon or Jamie Dimon.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.3333333333333333,
+            "first_known_positive_reciprocal_rank_at_5": 0.3333333333333333,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-07-moynihan",
+          "query": "Where is Brian T. Moynihan named?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.5,
+            "first_known_positive_reciprocal_rank_at_5": 0.2,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 1,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-08-schnitzer",
+          "query": "Find references that name Alan D. Schnitzer.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-09-greenberg",
+          "query": "Which passages name Evan G. Greenberg?",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.6666666666666666,
+            "first_known_positive_reciprocal_rank_at_5": 0.25,
+            "known_positive_blocks_in_fold": 3,
+            "known_hits_at_5": 2,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        },
+        {
+          "id": "ner-query-10-chubb-switzerland",
+          "query": "Find passages naming Chubb Limited and Switzerland.",
+          "split": "test",
+          "lexical": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          },
+          "entity_assisted": {
+            "known_positive_recall_at_5": 0.0,
+            "first_known_positive_reciprocal_rank_at_5": 0.0,
+            "known_positive_blocks_in_fold": 2,
+            "known_hits_at_5": 0,
+            "k": 5,
+            "unjudged_policy": "unjudged_not_negative",
+            "boundary": "Known positives in an agent-authored, agent-reviewed reference sample only. Unjudged full-corpus hits are not negative. Not exhaustive recall, precision@k, or financial accuracy."
+          }
+        }
+      ]
+    }
+  ]
+}
