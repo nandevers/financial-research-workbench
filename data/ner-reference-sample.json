@@ -1,0 +1,2746 @@
+{
+  "schema_version": 1,
+  "id": "financial-report-ner-reference-v1",
+  "created_on": "2026-10-27",
+  "status": "agent_reviewed_not_human_gold",
+  "annotation_origin": "First-pass agent annotations authored from existing source text before prediction runs; all 40 snippets and span lists subsequently checked by the root agent. Not human gold and not independent financial-accuracy labels.",
+  "review": {
+    "first_pass": "plain_language_review agent",
+    "second_review_status": "completed",
+    "second_reviewer": "root agent",
+    "reviewed_passages": 40,
+    "model_predictions_seen": false,
+    "review_notes": [
+      "Root inspected all 40 exact snippets and entity lists; clear tags accepted under documented named-business-unit and longest-non-nested policy.",
+      "European Union adjudicated as LOCATION for this explicit jurisdictional/geographic context; this is not a universal political-union taxonomy claim.",
+      "The whole Travelers near-duplicate document cluster was moved to test before inference so all four issuers have test examples.",
+      "This is agent-authored, agent-reviewed reference annotation, not human gold or independent professional validation."
+    ],
+    "adjudications": 1
+  },
+  "corpus_snapshot_sha256": "aff7b242ba7d5449eab273958d4d012d17954bf60f79e02ac2d54c39aca950e6",
+  "corpus_documents": 30,
+  "corpus_blocks": 26058,
+  "source_scope": "Existing local corpus only. This bounded reference sample is separate from the required five-model inference over all corpus blocks.",
+  "coordinate_system": "Python Unicode code-point offsets; half-open [start,end), relative to exact snippet text. Source slice offsets use the same coordinate system in the original corpus block.",
+  "annotation_policy": {
+    "types": [
+      "PERSON",
+      "ORGANIZATION",
+      "LOCATION"
+    ],
+    "entity_scope": "Explicit person names, named legal organizations/regulators/courts and identifiable named corporate units/brands; explicit countries, cities, states, geopolitical abbreviations and named geographic regions.",
+    "boundary_rule": "Longest non-overlapping named span; retain legal suffixes and internal punctuation, exclude external honorifics, ages, possessive suffixes and role titles. Parenthesized acronym/alias is a separate occurrence. No nested labels.",
+    "org_loc_rule": "A location inside a complete organization name is not separately labeled. A regulator, court or named corporate unit is ORGANIZATION, not a place. Standalone geopolitical names/abbreviations are LOCATION. Root adjudicated European Union as LOCATION in the explicit geographic/jurisdictional context of the selected sentence; not a universal taxonomy claim.",
+    "excluded": "Dates, numbers, percentages, laws/forms/frameworks, generic organizational nouns/coreferences, security tickers, street addresses/postal codes, adjectival nationality terms and the complement non-U.S. are outside this three-type sample. Explicit U.S. in geopolitical context is LOCATION; U.S. inside named metrics/accounting frameworks is excluded.",
+    "certainty": "Only clear spans are scored. All initial uncertainty has been adjudicated by root before inference; the context-specific EU decision is recorded on that span. Any later uncertainty must be reported explicitly and not silently counted as false positives.",
+    "completeness": "Agent attempted exhaustive common-type annotations inside each bounded snippet under this policy; second review is required. Labels are not exhaustive for entire source blocks or whole reports."
+  },
+  "selection": {
+    "method": "Fixed agent-curated source-block manifest: one bounded coverage snippet per document, plus ten person-focused supplements. No model predictions, scores or outputs were used.",
+    "passage_count": 40,
+    "documents_covered": 30,
+    "max_characters": 645,
+    "total_characters": 13738,
+    "clear_entity_counts": {
+      "ORGANIZATION": 67,
+      "LOCATION": 62,
+      "PERSON": 22
+    },
+    "uncertain_entity_count": 0,
+    "zero_entity_passages": 1,
+    "biases": [
+      "Purposeful entity-bearing selection; not a random or representative corpus sample.",
+      "One deliberate zero-entity snippet, sparse negatives, unequal label/issuer frequencies.",
+      "Officer lists, legal certification and table fragments are included; PDF text extraction artifacts remain where part of the exact slice.",
+      "The small sample cannot support broad accuracy claims for all 30 reports.",
+      "Development contains only BAC/JPM references after the whole Travelers cluster was moved to test. Test includes all four issuers, with unequal label frequencies. No per-issuer broad accuracy claim follows."
+    ]
+  },
+  "split_policy": {
+    "unit": "source document, with connected groups for near-duplicate reference excerpts",
+    "near_duplicate_method": "Casefold and replace numeric sequences with #; join documents if any chosen excerpt pair has difflib.SequenceMatcher ratio >=0.82. Similar entity names alone do not define duplication.",
+    "assignment": "Initial deterministic cluster ordering used SHA-256 of ner-reference-v1:<lexical first document>. Before inference, root moved the complete Travelers near-duplicate document cluster from development to test so all four issuers occur in test; no cluster or source document is split.",
+    "development_document_ids": [
+      "bac-2023-03-31",
+      "bac-2024-03-31",
+      "bac-2025-09-30",
+      "bac-2026-06-30",
+      "jpm-2025-annual",
+      "jpm-2026-q1",
+      "jpm-2026-q2"
+    ],
+    "test_document_ids": [
+      "bac-2023-06-30",
+      "bac-2023-09-30",
+      "bac-2023-12-31",
+      "bac-2024-06-30",
+      "bac-2024-09-30",
+      "bac-2024-12-31",
+      "bac-2025-03-31",
+      "bac-2025-06-30",
+      "bac-2025-12-31",
+      "bac-2026-03-31",
+      "cb-2023-annual",
+      "cb-2024-annual",
+      "cb-2025-annual",
+      "cb-2025-q3",
+      "jpm-2023-annual",
+      "jpm-2024-annual",
+      "jpm-2024-q3",
+      "jpm-2025-q1",
+      "jpm-2025-q2",
+      "jpm-2025-q3",
+      "trv-2023-annual",
+      "trv-2024-annual",
+      "trv-2025-annual"
+    ],
+    "passage_counts": {
+      "development": 8,
+      "test": 32
+    },
+    "near_duplicate_pairs": [
+      {
+        "passage_ids": [
+          "ner-ref-015",
+          "ner-ref-017"
+        ],
+        "similarity": 0.9412
+      },
+      {
+        "passage_ids": [
+          "ner-ref-028",
+          "ner-ref-030"
+        ],
+        "similarity": 0.8962
+      },
+      {
+        "passage_ids": [
+          "ner-ref-029",
+          "ner-ref-031"
+        ],
+        "similarity": 0.8537
+      },
+      {
+        "passage_ids": [
+          "ner-ref-036",
+          "ner-ref-037"
+        ],
+        "similarity": 0.9496
+      },
+      {
+        "passage_ids": [
+          "ner-ref-036",
+          "ner-ref-038"
+        ],
+        "similarity": 1.0
+      },
+      {
+        "passage_ids": [
+          "ner-ref-037",
+          "ner-ref-038"
+        ],
+        "similarity": 0.9443
+      }
+    ],
+    "warning": "Development/test sets are document-separated with chosen-reference near-duplicates grouped, not proven free of all full-corpus textual overlap. Labels and entity names may recur in genuinely different contexts. Freeze scoring/threshold choices before using the test subset.",
+    "coverage_limit": "Development contains BAC and JPM only; test includes BAC, JPM, TRV and CB. Counts are small and uneven; this is not a representative per-issuer balanced held-out benchmark.",
+    "root_override": {
+      "moved_whole_document_cluster_to_test": [
+        "trv-2023-annual",
+        "trv-2024-annual",
+        "trv-2025-annual"
+      ],
+      "reason": "Include all four issuers in held-out sample while preserving near-duplicate grouping.",
+      "before_predictions": true
+    },
+    "threshold_policy": "Model thresholds/settings must be declared before test inference. This small development sample is not used to optimize against test results."
+  },
+  "retrieval_judgments": {
+    "scope": "Only bounded reference snippet relevance is reviewed provisionally; full-corpus unjudged hits are not negative.",
+    "judged_block_ids": [
+      "bac-2026-06-30-39f8326db39f",
+      "bac-2026-03-31-767eecfda2eb",
+      "bac-2025-09-30-751bc23a8b35",
+      "bac-2025-06-30-e5af79ae457f",
+      "bac-2025-03-31-9b88caeb8a99",
+      "bac-2024-09-30-6b992925ebf1",
+      "bac-2024-06-30-e759fa9d9b9e",
+      "bac-2024-03-31-596e4655fe33",
+      "bac-2023-09-30-aceccdf46f3a",
+      "bac-2023-06-30-e8536ace33a0",
+      "bac-2023-03-31-1d8d88df4fc6",
+      "jpm-2023-annual-e3af62252a5e",
+      "jpm-2024-annual-86f7b5d31c19",
+      "jpm-2025-annual-d461ae4b2679",
+      "jpm-2024-q3-41a10f10cd87",
+      "jpm-2025-q1-f36b3b9fd04a",
+      "jpm-2025-q2-9c944482e849",
+      "jpm-2025-q3-6a4ba1bda551",
+      "jpm-2026-q1-b2af3a27c1d6",
+      "jpm-2026-q2-7cbe1ff2e88d",
+      "trv-2025-annual-a192ae3d99bd",
+      "trv-2024-annual-99f0c8de3c9b",
+      "trv-2023-annual-2b4ce916c0ef",
+      "cb-2025-annual-81bc4fccd11f",
+      "cb-2024-annual-81602f4d353d",
+      "cb-2023-annual-1bfd0062c446",
+      "cb-2025-q3-3ded31ca8a20",
+      "bac-2025-12-31-86e6c0c379e8",
+      "bac-2024-12-31-ee29c49176ab",
+      "bac-2023-12-31-3f23ad716b38",
+      "bac-2025-12-31-1644a3aa5bc4",
+      "bac-2023-12-31-ed541ea3c21b",
+      "jpm-2023-annual-6a3ab4e76d5b",
+      "jpm-2024-annual-252c12a3107c",
+      "jpm-2025-annual-82574ade3748",
+      "trv-2025-annual-449e6cc39bbf",
+      "trv-2024-annual-9ff11321f658",
+      "trv-2023-annual-94a2005905a7",
+      "cb-2025-annual-62de43f984ff",
+      "cb-2024-annual-0310663d0142"
+    ],
+    "unjudged_policy": "unjudged_not_negative",
+    "metrics": "For full-corpus ranking report known-positive recall@k / reciprocal rank with incomplete-judgment caveat. Exact precision can only be evaluated in a completely judged candidate pool under this sample criterion.",
+    "query_split_note": "Nine queries have known test positives. The Japan/Australia query is development-only. For held-out metrics use only relevant test passage/block IDs and keep document folds separate. Do not treat development positives or other unjudged full-corpus hits as negatives."
+  },
+  "passages": [
+    {
+      "id": "ner-ref-001",
+      "document_id": "bac-2026-06-30",
+      "source_block_id": "bac-2026-06-30-39f8326db39f",
+      "ticker": "BAC",
+      "fiscal_period": "2026-06-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000394/bac-20260630.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 367,
+      "text": "On March 31, 2026, the U.S. District Court for the District of Columbia ruled that BANA did not owe additional interest to the Federal Deposit Insurance Corporation (FDIC). Because no appeal was filed by June 15, 2026, the lawsuit was concluded as of that date. The remaining security pledged by BANA with respect to the disputed amount of interest has been released.",
+      "entities": [
+        {
+          "start": 23,
+          "end": 71,
+          "type": "ORGANIZATION",
+          "text": "U.S. District Court for the District of Columbia",
+          "certainty": "clear"
+        },
+        {
+          "start": 83,
+          "end": 87,
+          "type": "ORGANIZATION",
+          "text": "BANA",
+          "certainty": "clear"
+        },
+        {
+          "start": 127,
+          "end": 164,
+          "type": "ORGANIZATION",
+          "text": "Federal Deposit Insurance Corporation",
+          "certainty": "clear"
+        },
+        {
+          "start": 166,
+          "end": 170,
+          "type": "ORGANIZATION",
+          "text": "FDIC",
+          "certainty": "clear"
+        },
+        {
+          "start": 296,
+          "end": 300,
+          "type": "ORGANIZATION",
+          "text": "BANA",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Named court is one organization; its nested geographic words are not separate spans.",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-002",
+      "document_id": "bac-2026-03-31",
+      "source_block_id": "bac-2026-03-31-767eecfda2eb",
+      "ticker": "BAC",
+      "fiscal_period": "2026-03-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000249/bac-20260331.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 405,
+      "text": "BofASE, an authorized credit institution with its head office located in France, is regulated by the Autorité de Contrôle Prudentiel et de Résolution and the Autorité des Marchés Financiers, and supervised under the Single Supervisory Mechanism by the European Central Bank. At March 31, 2026, BofASE's capital resources were $11.7 billion, which exceeded the minimum Pillar 1 requirement of $4.1 billion.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 6,
+          "type": "ORGANIZATION",
+          "text": "BofASE",
+          "certainty": "clear"
+        },
+        {
+          "start": 73,
+          "end": 79,
+          "type": "LOCATION",
+          "text": "France",
+          "certainty": "clear"
+        },
+        {
+          "start": 101,
+          "end": 149,
+          "type": "ORGANIZATION",
+          "text": "Autorité de Contrôle Prudentiel et de Résolution",
+          "certainty": "clear"
+        },
+        {
+          "start": 158,
+          "end": 189,
+          "type": "ORGANIZATION",
+          "text": "Autorité des Marchés Financiers",
+          "certainty": "clear"
+        },
+        {
+          "start": 252,
+          "end": 273,
+          "type": "ORGANIZATION",
+          "text": "European Central Bank",
+          "certainty": "clear"
+        },
+        {
+          "start": 294,
+          "end": 300,
+          "type": "ORGANIZATION",
+          "text": "BofASE",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Single Supervisory Mechanism is an institutional framework, excluded from the shared named-organization task.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-003",
+      "document_id": "bac-2025-09-30",
+      "source_block_id": "bac-2025-09-30-751bc23a8b35",
+      "ticker": "BAC",
+      "fiscal_period": "2025-09-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-25-000405/bac-20250930.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 448,
+      "text": "Our largest non-U.S. country exposure at September 30, 2025 was the United Kingdom with net exposure of $64.0 billion, which increased $1.9 billion from December 31, 2024 primarily due to increased exposure to financial institutions. Our second largest non-U.S. country exposure was Germany with net exposure of $41.5 billion at September 30, 2025, which increased $4.5 billion from December 31, 2024, primarily due to increased sovereign exposure.",
+      "entities": [
+        {
+          "start": 68,
+          "end": 82,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        },
+        {
+          "start": 283,
+          "end": 290,
+          "type": "LOCATION",
+          "text": "Germany",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "The adjectival complement non-U.S. is outside this location-name policy.",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-004",
+      "document_id": "bac-2025-06-30",
+      "source_block_id": "bac-2025-06-30-e5af79ae457f",
+      "ticker": "BAC",
+      "fiscal_period": "2025-06-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-25-000268/bac-20250630.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 293,
+      "text": "(1) Includes interest income on interest-bearing deposits with the Federal Reserve, non-U.S. central banks and other banks of $ 2.8 billion and $ 4.5 billion for the three months ended June 30, 2025 and 2024, and $ 5.7 billion and $ 9.0 billion for the six months ended June 30, 2025 and 2024.",
+      "entities": [
+        {
+          "start": 67,
+          "end": 82,
+          "type": "ORGANIZATION",
+          "text": "Federal Reserve",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Non-U.S. describes an excluded complement, not a specific location mention.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-005",
+      "document_id": "bac-2025-03-31",
+      "source_block_id": "bac-2025-03-31-9b88caeb8a99",
+      "ticker": "BAC",
+      "fiscal_period": "2025-03-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-25-000200/bac-20250331.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 436,
+      "text": "Noninterest expense increased $533 million to $17.8 billion for the three months ended March 31, 2025 compared to the same period in 2024. The increase was primarily driven by investments in people, revenue-related expenses, technology, and operations. Additionally, the prior-year period included a $700 million accrual for the increase in the Corporation’s share of the Federal Deposit Insurance Corporation (FDIC) special assessment.",
+      "entities": [
+        {
+          "start": 372,
+          "end": 409,
+          "type": "ORGANIZATION",
+          "text": "Federal Deposit Insurance Corporation",
+          "certainty": "clear"
+        },
+        {
+          "start": 411,
+          "end": 415,
+          "type": "ORGANIZATION",
+          "text": "FDIC",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-006",
+      "document_id": "bac-2024-09-30",
+      "source_block_id": "bac-2024-09-30-6b992925ebf1",
+      "ticker": "BAC",
+      "fiscal_period": "2024-09-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-24-000280/bac-20240930.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 567,
+      "text": "uncertain or changing political conditions or any future federal government shutdown and uncertainty regarding the federal government’s debt limit or changes in fiscal, monetary or regulatory policy; the emergence or continuation of widespread health emergencies or pandemics; the impact of natural disasters, extreme weather events, military conflicts (including the Russia/Ukraine conflict, the conflict in the Middle East, the possible expansion of such conflicts and potential geopolitical consequences), terrorism or other geopolitical events; and other matters.",
+      "entities": [
+        {
+          "start": 368,
+          "end": 374,
+          "type": "LOCATION",
+          "text": "Russia",
+          "certainty": "clear"
+        },
+        {
+          "start": 375,
+          "end": 382,
+          "type": "LOCATION",
+          "text": "Ukraine",
+          "certainty": "clear"
+        },
+        {
+          "start": 413,
+          "end": 424,
+          "type": "LOCATION",
+          "text": "Middle East",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Country names separated by a slash are two mentions; named region Middle East is one location.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-007",
+      "document_id": "bac-2024-06-30",
+      "source_block_id": "bac-2024-06-30-e759fa9d9b9e",
+      "ticker": "BAC",
+      "fiscal_period": "2024-06-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-24-000208/bac-20240630.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 323,
+      "text": "The Corporation’s principal U.S. broker-dealer subsidiaries are BofA Securities, Inc. (BofAS) and Merrill Lynch, Pierce, Fenner & Smith Incorporated (MLPF&S). The Corporation's principal European subsidiaries undertaking broker-dealer activities are Merrill Lynch International (MLI) and BofA Securities Europe SA (BofASE).",
+      "entities": [
+        {
+          "start": 28,
+          "end": 32,
+          "type": "LOCATION",
+          "text": "U.S.",
+          "certainty": "clear"
+        },
+        {
+          "start": 64,
+          "end": 85,
+          "type": "ORGANIZATION",
+          "text": "BofA Securities, Inc.",
+          "certainty": "clear"
+        },
+        {
+          "start": 87,
+          "end": 92,
+          "type": "ORGANIZATION",
+          "text": "BofAS",
+          "certainty": "clear"
+        },
+        {
+          "start": 98,
+          "end": 148,
+          "type": "ORGANIZATION",
+          "text": "Merrill Lynch, Pierce, Fenner & Smith Incorporated",
+          "certainty": "clear"
+        },
+        {
+          "start": 150,
+          "end": 156,
+          "type": "ORGANIZATION",
+          "text": "MLPF&S",
+          "certainty": "clear"
+        },
+        {
+          "start": 250,
+          "end": 277,
+          "type": "ORGANIZATION",
+          "text": "Merrill Lynch International",
+          "certainty": "clear"
+        },
+        {
+          "start": 279,
+          "end": 282,
+          "type": "ORGANIZATION",
+          "text": "MLI",
+          "certainty": "clear"
+        },
+        {
+          "start": 288,
+          "end": 313,
+          "type": "ORGANIZATION",
+          "text": "BofA Securities Europe SA",
+          "certainty": "clear"
+        },
+        {
+          "start": 315,
+          "end": 321,
+          "type": "ORGANIZATION",
+          "text": "BofASE",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Parenthesized acronyms are separate mentions. European is adjectival and not a location span.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-008",
+      "document_id": "bac-2024-03-31",
+      "source_block_id": "bac-2024-03-31-596e4655fe33",
+      "ticker": "BAC",
+      "fiscal_period": "2024-03-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-24-000156/bac-20240331.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 407,
+      "text": "Table 34 presents our 20 largest non-U.S. country exposures at March 31, 2024. These exposures accounted for 90 percent and 89 percent of our total non-U.S. exposure at March 31, 2024 and December 31, 2023. Net country exposure for these 20 countries decreased $3.0 billion in 2024 primarily driven by decreases in Canada, Japan, Germany and Australia, partially offset by an increase in the United Kingdom.",
+      "entities": [
+        {
+          "start": 315,
+          "end": 321,
+          "type": "LOCATION",
+          "text": "Canada",
+          "certainty": "clear"
+        },
+        {
+          "start": 323,
+          "end": 328,
+          "type": "LOCATION",
+          "text": "Japan",
+          "certainty": "clear"
+        },
+        {
+          "start": 330,
+          "end": 337,
+          "type": "LOCATION",
+          "text": "Germany",
+          "certainty": "clear"
+        },
+        {
+          "start": 342,
+          "end": 351,
+          "type": "LOCATION",
+          "text": "Australia",
+          "certainty": "clear"
+        },
+        {
+          "start": 392,
+          "end": 406,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Non-U.S. is excluded; named countries are included.",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-009",
+      "document_id": "bac-2023-09-30",
+      "source_block_id": "bac-2023-09-30-aceccdf46f3a",
+      "ticker": "BAC",
+      "fiscal_period": "2023-09-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-23-000272/bac-20230930.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 348,
+      "text": "The Federal Reserve requires BHCs to submit a capital plan and planned capital actions on an annual basis, consistent with the rules governing the CCAR capital plan. Based on 2023 stress test results, our SCB is 2.5 percent effective October 1, 2023. For more information, see Executive Summary – Recent Developments – Capital Management on page 3.",
+      "entities": [
+        {
+          "start": 4,
+          "end": 19,
+          "type": "ORGANIZATION",
+          "text": "Federal Reserve",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "BHCs is a generic bank type. CCAR is an assessment framework, not an organization.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-010",
+      "document_id": "bac-2023-06-30",
+      "source_block_id": "bac-2023-06-30-e8536ace33a0",
+      "ticker": "BAC",
+      "fiscal_period": "2023-06-30",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-23-000176/bac-20230630.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 352,
+      "text": "For the same periods in the prior year, the provision for credit losses was primarily driven by loan growth and a dampened macroeconomic outlook, partially offset by asset quality improvement and reduced COVID-19 pandemic uncertainties. In addition, the six-month period in the prior year was also driven by a reserve build related to Russian exposure.",
+      "entities": [],
+      "annotation_note": "Intentional zero-entity example. Russian is adjectival nationality/exposure; COVID-19 is a disease. Neither belongs to the three-type policy.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-011",
+      "document_id": "bac-2023-03-31",
+      "source_block_id": "bac-2023-03-31-1d8d88df4fc6",
+      "ticker": "BAC",
+      "fiscal_period": "2023-03-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-23-000142/bac-20230331.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 385,
+      "text": "To help deploy financial strength and liquidity into the larger banking system, Bank of America and certain other U.S. financial institutions made uninsured deposits totaling $30 billion into First Republic Bank. The amount of Bank of America’s uninsured deposit was $5 billion and is recorded in Time deposits placed and other short-term investments on the Consolidated Balance Sheet.",
+      "entities": [
+        {
+          "start": 80,
+          "end": 95,
+          "type": "ORGANIZATION",
+          "text": "Bank of America",
+          "certainty": "clear"
+        },
+        {
+          "start": 114,
+          "end": 118,
+          "type": "LOCATION",
+          "text": "U.S.",
+          "certainty": "clear"
+        },
+        {
+          "start": 192,
+          "end": 211,
+          "type": "ORGANIZATION",
+          "text": "First Republic Bank",
+          "certainty": "clear"
+        },
+        {
+          "start": 227,
+          "end": 242,
+          "type": "ORGANIZATION",
+          "text": "Bank of America",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-012",
+      "document_id": "jpm-2023-annual",
+      "source_block_id": "jpm-2023-annual-e3af62252a5e",
+      "ticker": "JPM",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/annualreport-2023.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 280,
+      "source_text_start": 0,
+      "source_text_end": 254,
+      "text": "(n) Included $54.9 billion, $14.9 billion, $3.5 billion, and $7.8 billion in California, New York, Florida and Massachusetts, respectively, associated with First Republic. Notes to consolidated financial statements 242 JPMorgan Chase & Co./2023 Form 10-K",
+      "entities": [
+        {
+          "start": 77,
+          "end": 87,
+          "type": "LOCATION",
+          "text": "California",
+          "certainty": "clear"
+        },
+        {
+          "start": 89,
+          "end": 97,
+          "type": "LOCATION",
+          "text": "New York",
+          "certainty": "clear"
+        },
+        {
+          "start": 99,
+          "end": 106,
+          "type": "LOCATION",
+          "text": "Florida",
+          "certainty": "clear"
+        },
+        {
+          "start": 111,
+          "end": 124,
+          "type": "LOCATION",
+          "text": "Massachusetts",
+          "certainty": "clear"
+        },
+        {
+          "start": 156,
+          "end": 170,
+          "type": "ORGANIZATION",
+          "text": "First Republic",
+          "certainty": "clear"
+        },
+        {
+          "start": 219,
+          "end": 239,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "First Republic is a shortened bank name in an acquisition-related note; organization label retains the exact shortened surface.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-013",
+      "document_id": "jpm-2024-annual",
+      "source_block_id": "jpm-2024-annual-86f7b5d31c19",
+      "ticker": "JPM",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/annualreport-2024.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 202,
+      "source_text_start": 0,
+      "source_text_end": 238,
+      "text": "James Dimon Chairman and Chief Executive Officer Jeremy Barnum Executive Vice President and Chief Financial Officer February 14, 2025 Management’s report on internal control over financial reporting 168 JPMorgan Chase & Co./2024 Form 10-K",
+      "entities": [
+        {
+          "start": 0,
+          "end": 11,
+          "type": "PERSON",
+          "text": "James Dimon",
+          "certainty": "clear"
+        },
+        {
+          "start": 49,
+          "end": 62,
+          "type": "PERSON",
+          "text": "Jeremy Barnum",
+          "certainty": "clear"
+        },
+        {
+          "start": 203,
+          "end": 223,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Officer names exclude job titles.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-014",
+      "document_id": "jpm-2025-annual",
+      "source_block_id": "jpm-2025-annual-d461ae4b2679",
+      "ticker": "JPM",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/annualreport-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 320,
+      "source_text_start": 0,
+      "source_text_end": 427,
+      "text": "For the year ended December 31, 2023, New York City and California made up greater than 50% of the effect of the U.S. state and local income taxes category. (b) Income tax expense associated with the First Republic acquisition was reflected in the estimated bargain purchase gain, which resulted in a reduction in the Firm’s effective tax rate. Notes to consolidated financial statements 288 JPMorgan Chase & Co./2025 Form 10-K",
+      "entities": [
+        {
+          "start": 38,
+          "end": 51,
+          "type": "LOCATION",
+          "text": "New York City",
+          "certainty": "clear"
+        },
+        {
+          "start": 56,
+          "end": 66,
+          "type": "LOCATION",
+          "text": "California",
+          "certainty": "clear"
+        },
+        {
+          "start": 113,
+          "end": 117,
+          "type": "LOCATION",
+          "text": "U.S.",
+          "certainty": "clear"
+        },
+        {
+          "start": 200,
+          "end": 214,
+          "type": "ORGANIZATION",
+          "text": "First Republic",
+          "certainty": "clear"
+        },
+        {
+          "start": 392,
+          "end": 412,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "U.S. state and local income taxes explicitly describes a country jurisdiction.",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-015",
+      "document_id": "jpm-2024-q3",
+      "source_block_id": "jpm-2024-q3-41a10f10cd87",
+      "ticker": "JPM",
+      "fiscal_period": "2024-09-30",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2024/3rd-quarter/corp-q3-2024.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 206,
+      "source_text_start": 0,
+      "source_text_end": 156,
+      "text": "Exhibit 31.1 JPMorgan Chase & Co. CERTIFICATION I, James Dimon, certify that: 1. I have reviewed this Quarterly Report on Form 10-Q of JPMorgan Chase & Co.;",
+      "entities": [
+        {
+          "start": 13,
+          "end": 33,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        },
+        {
+          "start": 51,
+          "end": 62,
+          "type": "PERSON",
+          "text": "James Dimon",
+          "certainty": "clear"
+        },
+        {
+          "start": 135,
+          "end": 155,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Certification excerpt ends at the first complete numbered clause.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-016",
+      "document_id": "jpm-2025-q1",
+      "source_block_id": "jpm-2025-q1-f36b3b9fd04a",
+      "ticker": "JPM",
+      "fiscal_period": "2025-03-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2025/1st-quarter/corp-q1-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 184,
+      "source_text_start": 0,
+      "source_text_end": 363,
+      "text": "SIGNATURE Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned thereunto duly authorized. JPMorgan Chase & Co. (Registrant) By: /s/ Elena Korablina Elena Korablina Managing Director and Firmwide Controller (Principal Accounting Officer) Date: May 1, 2025 184",
+      "entities": [
+        {
+          "start": 195,
+          "end": 215,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        },
+        {
+          "start": 237,
+          "end": 252,
+          "type": "PERSON",
+          "text": "Elena Korablina",
+          "certainty": "clear"
+        },
+        {
+          "start": 253,
+          "end": 268,
+          "type": "PERSON",
+          "text": "Elena Korablina",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Both repeated signature-name occurrences are annotated.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-017",
+      "document_id": "jpm-2025-q2",
+      "source_block_id": "jpm-2025-q2-9c944482e849",
+      "ticker": "JPM",
+      "fiscal_period": "2025-06-30",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2025/2nd-quarter/corp-q2-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 208,
+      "source_text_start": 0,
+      "source_text_end": 158,
+      "text": "Exhibit 31.2 JPMorgan Chase & Co. CERTIFICATION I, Jeremy Barnum, certify that: 1. I have reviewed this Quarterly Report on Form 10-Q of JPMorgan Chase & Co.;",
+      "entities": [
+        {
+          "start": 13,
+          "end": 33,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        },
+        {
+          "start": 51,
+          "end": 64,
+          "type": "PERSON",
+          "text": "Jeremy Barnum",
+          "certainty": "clear"
+        },
+        {
+          "start": 137,
+          "end": 157,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase & Co.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Certification excerpt ends at the first complete numbered clause.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-018",
+      "document_id": "jpm-2025-q3",
+      "source_block_id": "jpm-2025-q3-6a4ba1bda551",
+      "ticker": "JPM",
+      "fiscal_period": "2025-09-30",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2025/3rd-quarter/corp-q3-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 179,
+      "source_text_start": 0,
+      "source_text_end": 416,
+      "text": "Note 21 – Regulatory capital Refer to Note 27 of JPMorganChase’s 2024 Form 10-K for a detailed discussion on regulatory capital. The Federal Reserve establishes capital requirements, including well-capitalized standards, for the Firm as a consolidated financial holding company. The OCC establishes similar minimum capital requirements and standards for the Firm’s principal IDI subsidiary, JPMorgan Chase Bank, N.A.",
+      "entities": [
+        {
+          "start": 49,
+          "end": 62,
+          "type": "ORGANIZATION",
+          "text": "JPMorganChase",
+          "certainty": "clear"
+        },
+        {
+          "start": 133,
+          "end": 148,
+          "type": "ORGANIZATION",
+          "text": "Federal Reserve",
+          "certainty": "clear"
+        },
+        {
+          "start": 283,
+          "end": 286,
+          "type": "ORGANIZATION",
+          "text": "OCC",
+          "certainty": "clear"
+        },
+        {
+          "start": 391,
+          "end": 416,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase Bank, N.A.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Source text retains organization spellings exactly; possessive suffix is excluded.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-019",
+      "document_id": "jpm-2026-q1",
+      "source_block_id": "jpm-2026-q1-b2af3a27c1d6",
+      "ticker": "JPM",
+      "fiscal_period": "2026-03-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2026/1st-quarter/corp-q1-2026.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 74,
+      "source_text_start": 200,
+      "source_text_end": 429,
+      "text": "Germany $ 92.4 $ 15.7 $ 4.8 $ 0.8 $ 113.7 $ 100.3 United Kingdom 20.5 25.2 47.8 1.4 94.9 93.2 Japan 52.7 17.0 9.1 0.3 79.1 77.3 France 0.7 17.1 14.3 1.6 33.7 24.9 Australia 5.4 11.3 4.0 — 20.7 17.6 Brazil 6.3 5.1 7.5 — 18.9 20.9 ",
+      "entities": [
+        {
+          "start": 0,
+          "end": 7,
+          "type": "LOCATION",
+          "text": "Germany",
+          "certainty": "clear"
+        },
+        {
+          "start": 50,
+          "end": 64,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        },
+        {
+          "start": 94,
+          "end": 99,
+          "type": "LOCATION",
+          "text": "Japan",
+          "certainty": "clear"
+        },
+        {
+          "start": 128,
+          "end": 134,
+          "type": "LOCATION",
+          "text": "France",
+          "certainty": "clear"
+        },
+        {
+          "start": 163,
+          "end": 172,
+          "type": "LOCATION",
+          "text": "Australia",
+          "certainty": "clear"
+        },
+        {
+          "start": 198,
+          "end": 204,
+          "type": "LOCATION",
+          "text": "Brazil",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Contiguous country table slice; ends before the next country row. Numeric cells are not entity labels.",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-020",
+      "document_id": "jpm-2026-q2",
+      "source_block_id": "jpm-2026-q2-7cbe1ff2e88d",
+      "ticker": "JPM",
+      "fiscal_period": "2026-06-30",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2026/2nd-quarter/corp-q2-2026.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 52,
+      "source_text_start": 0,
+      "source_text_end": 453,
+      "text": "Each of the Firm and JPMorgan Chase Bank, N.A.'s average LCR may fluctuate from period to period due to changes in their respective eligible HQLA and estimated net cash outflows as a result of ongoing business activity and from the impacts of Federal Reserve actions as well as other factors. Refer to pages 101-102 of JPMorganChase’s 2025 Form 10-K and the Firm’s U.S. LCR Disclosure reports for additional information on HQLA and net cash outflows. 52",
+      "entities": [
+        {
+          "start": 21,
+          "end": 46,
+          "type": "ORGANIZATION",
+          "text": "JPMorgan Chase Bank, N.A.",
+          "certainty": "clear"
+        },
+        {
+          "start": 243,
+          "end": 258,
+          "type": "ORGANIZATION",
+          "text": "Federal Reserve",
+          "certainty": "clear"
+        },
+        {
+          "start": 319,
+          "end": 332,
+          "type": "ORGANIZATION",
+          "text": "JPMorganChase",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "The possessive suffix is excluded. U.S. LCR is a named regulatory metric context and is excluded from the location task.",
+      "selection_role": "coverage",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-021",
+      "document_id": "trv-2025-annual",
+      "source_block_id": "trv-2025-annual-a192ae3d99bd",
+      "ticker": "TRV",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://s26.q4cdn.com/410417801/files/doc_financials/2025/AR/2026-Travelers-Annual-Report-Final.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 54,
+      "source_text_start": 0,
+      "source_text_end": 381,
+      "text": "In addition, in a number of jurisdictions, particularly the European Union and the United Kingdom and a small number of U.S. states, a reinsurer is permitted to transfer a reinsurance arrangement to another reinsurer, which may be less creditworthy, without a counterparty’s consent, provided that the transfer has been approved by the applicable regulatory and/or court authority.",
+      "entities": [
+        {
+          "start": 60,
+          "end": 74,
+          "type": "LOCATION",
+          "text": "European Union",
+          "certainty": "clear",
+          "note": "Root second reviewer adjudicated LOCATION in this explicit reinsurer-jurisdiction/geographic context. This is the reference policy for this excerpt, not a universal taxonomy claim.",
+          "adjudication": {
+            "reviewer": "root agent",
+            "decision": "LOCATION",
+            "basis": "Explicit geographic/jurisdictional context in the source sentence.",
+            "predictions_seen": false
+          }
+        },
+        {
+          "start": 83,
+          "end": 97,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        },
+        {
+          "start": 120,
+          "end": 124,
+          "type": "LOCATION",
+          "text": "U.S.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Printer metadata is excluded by an exact contiguous slice. EU is annotated uncertain below because a political union can also receive an organization label.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-022",
+      "document_id": "trv-2024-annual",
+      "source_block_id": "trv-2024-annual-99f0c8de3c9b",
+      "ticker": "TRV",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://s26.q4cdn.com/410417801/files/doc_financials/2024/ar/v2/Travelers-2024-Annual-Report.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 260,
+      "source_text_start": 0,
+      "source_text_end": 98,
+      "text": "The Travelers Companies, Inc. 485 Lexington Avenue New York, NY 10017-2630 800 -328-2189 NYSE: TRV",
+      "entities": [
+        {
+          "start": 0,
+          "end": 29,
+          "type": "ORGANIZATION",
+          "text": "The Travelers Companies, Inc.",
+          "certainty": "clear"
+        },
+        {
+          "start": 51,
+          "end": 59,
+          "type": "LOCATION",
+          "text": "New York",
+          "certainty": "clear"
+        },
+        {
+          "start": 61,
+          "end": 63,
+          "type": "LOCATION",
+          "text": "NY",
+          "certainty": "clear"
+        },
+        {
+          "start": 89,
+          "end": 93,
+          "type": "ORGANIZATION",
+          "text": "NYSE",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Street names and postal codes are excluded by policy; the state abbreviation NY is a location. TRV is a security ticker, not an organization mention here.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-023",
+      "document_id": "trv-2023-annual",
+      "source_block_id": "trv-2023-annual-2b4ce916c0ef",
+      "ticker": "TRV",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://s26.q4cdn.com/410417801/files/doc_financials/2023/ar/Travelers-2023-Annual__Report.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 37,
+      "source_text_start": 0,
+      "source_text_end": 164,
+      "text": "International In Canada, the Company markets and distributes its personal insurance products principally through hundreds of brokers located throughout the country.",
+      "entities": [
+        {
+          "start": 17,
+          "end": 23,
+          "type": "LOCATION",
+          "text": "Canada",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Printer metadata is outside this exact excerpt. Company is a generic coreference, not a named mention.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-024",
+      "document_id": "cb-2025-annual",
+      "source_block_id": "cb-2025-annual-81bc4fccd11f",
+      "ticker": "CB",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://www.chubb.com/content/dam/annual-corporate-governance/2026/a-chubb-limited/chubb-limited-annual-report-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 226,
+      "source_text_start": 0,
+      "source_text_end": 474,
+      "text": "NOTES TO CONSOLIDATED FINANCIAL STATEMENTS (continued) Chubb Limited and Subsidiaries The following table summarizes tax years open for examination by major income tax jurisdiction: At December 31, 2025 Australia 2019 - 2025 Brazil 2019 - 2025 Canada 2018 - 2025 China 2022 - 2025 France 2023 - 2025 Germany 2016 - 2025 Italy 2020 - 2025 Korea 2020 - 2025 Mexico 2016 - 2025 Spain 2012 - 2025 Switzerland 2022 - 2025 United Kingdom 2015 - 2025 United States 2014 - 2025 F-79",
+      "entities": [
+        {
+          "start": 55,
+          "end": 68,
+          "type": "ORGANIZATION",
+          "text": "Chubb Limited",
+          "certainty": "clear"
+        },
+        {
+          "start": 203,
+          "end": 212,
+          "type": "LOCATION",
+          "text": "Australia",
+          "certainty": "clear"
+        },
+        {
+          "start": 225,
+          "end": 231,
+          "type": "LOCATION",
+          "text": "Brazil",
+          "certainty": "clear"
+        },
+        {
+          "start": 244,
+          "end": 250,
+          "type": "LOCATION",
+          "text": "Canada",
+          "certainty": "clear"
+        },
+        {
+          "start": 263,
+          "end": 268,
+          "type": "LOCATION",
+          "text": "China",
+          "certainty": "clear"
+        },
+        {
+          "start": 281,
+          "end": 287,
+          "type": "LOCATION",
+          "text": "France",
+          "certainty": "clear"
+        },
+        {
+          "start": 300,
+          "end": 307,
+          "type": "LOCATION",
+          "text": "Germany",
+          "certainty": "clear"
+        },
+        {
+          "start": 320,
+          "end": 325,
+          "type": "LOCATION",
+          "text": "Italy",
+          "certainty": "clear"
+        },
+        {
+          "start": 338,
+          "end": 343,
+          "type": "LOCATION",
+          "text": "Korea",
+          "certainty": "clear"
+        },
+        {
+          "start": 356,
+          "end": 362,
+          "type": "LOCATION",
+          "text": "Mexico",
+          "certainty": "clear"
+        },
+        {
+          "start": 375,
+          "end": 380,
+          "type": "LOCATION",
+          "text": "Spain",
+          "certainty": "clear"
+        },
+        {
+          "start": 393,
+          "end": 404,
+          "type": "LOCATION",
+          "text": "Switzerland",
+          "certainty": "clear"
+        },
+        {
+          "start": 417,
+          "end": 431,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        },
+        {
+          "start": 444,
+          "end": 457,
+          "type": "LOCATION",
+          "text": "United States",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Country labels in the source table are retained. Korea is not expanded or externally disambiguated.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-025",
+      "document_id": "cb-2024-annual",
+      "source_block_id": "cb-2024-annual-81602f4d353d",
+      "ticker": "CB",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://s201.q4cdn.com/471466897/files/doc_financials/2024/ar/2024-Chubb-Limited-Annual-Report-Final.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 27,
+      "source_text_start": 0,
+      "source_text_end": 384,
+      "text": "Our team’s ongoing commitment to service and consistency in underwriting approach ensures we can deliver the full value of Chubb, regardless of market conditions and risk environment. ” — Juan Luis Ortega, President, North America Insurance 60% U.S. market share as a high-net- worth insurer 13,500 employees in 130 offices across the U.S., Canada and Bermuda reaching 19,000 agencies",
+      "entities": [
+        {
+          "start": 123,
+          "end": 128,
+          "type": "ORGANIZATION",
+          "text": "Chubb",
+          "certainty": "clear"
+        },
+        {
+          "start": 188,
+          "end": 204,
+          "type": "PERSON",
+          "text": "Juan Luis Ortega",
+          "certainty": "clear"
+        },
+        {
+          "start": 217,
+          "end": 240,
+          "type": "ORGANIZATION",
+          "text": "North America Insurance",
+          "certainty": "clear"
+        },
+        {
+          "start": 245,
+          "end": 249,
+          "type": "LOCATION",
+          "text": "U.S.",
+          "certainty": "clear"
+        },
+        {
+          "start": 335,
+          "end": 339,
+          "type": "LOCATION",
+          "text": "U.S.",
+          "certainty": "clear"
+        },
+        {
+          "start": 341,
+          "end": 347,
+          "type": "LOCATION",
+          "text": "Canada",
+          "certainty": "clear"
+        },
+        {
+          "start": 352,
+          "end": 359,
+          "type": "LOCATION",
+          "text": "Bermuda",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Named business unit North America Insurance is an organization; its internal region name is not a nested location.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-026",
+      "document_id": "cb-2023-annual",
+      "source_block_id": "cb-2023-annual-1bfd0062c446",
+      "ticker": "CB",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://www.chubb.com/content/dam/annual-corporate-governance/2024/a--chubb-limited/03_chubb_limited_annual_report_2023.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 22,
+      "source_text_start": 0,
+      "source_text_end": 645,
+      "text": "I also want to thank our thoughtful, active and supportive Board of Directors. I appreciate your wise counsel and commitment to our mission. Our best days are in front of us. The company we have built is our launching pad into the future as we capitalize over time on an enormous number of opportunities we could only dream about a decade or two ago. Acknowledging that ours is a long-term business, we are patient in strategy. Exceeding our ambitious objectives, we are impatient in execution. On behalf of the entire organization, thank you for your investment and trust in us. Sincerely, Evan G. Greenberg Chairman and Chief Executive Officer",
+      "entities": [
+        {
+          "start": 591,
+          "end": 608,
+          "type": "PERSON",
+          "text": "Evan G. Greenberg",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Board of Directors is generic; only the explicit officer name is labeled.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-027",
+      "document_id": "cb-2025-q3",
+      "source_block_id": "cb-2025-q3-3ded31ca8a20",
+      "ticker": "CB",
+      "fiscal_period": "2025-09-30",
+      "source_url": "https://s201.q4cdn.com/471466897/files/doc_financials/2025/q3/Chubb-Limited-Q3-2025-Form-10-Q-Filed.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 1,
+      "source_text_start": 0,
+      "source_text_end": 540,
+      "text": "UNITED STATES SECURITIES AND EXCHANGE COMMISSION Washington, D.C. 20549 FORM 10-Q ☑ QUARTERLY REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934 For the Quarterly Period Ended September 30, 2025 OR ☐ TRANSITION REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934 For the Transition Period from to Commission File No. 1-11778 CHUBB LIMITED (Exact name of registrant as specified in its charter) Switzerland 98-0091805 (State or other jurisdiction of incorporation or organization) (I.R.S.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 48,
+          "type": "ORGANIZATION",
+          "text": "UNITED STATES SECURITIES AND EXCHANGE COMMISSION",
+          "certainty": "clear"
+        },
+        {
+          "start": 49,
+          "end": 65,
+          "type": "LOCATION",
+          "text": "Washington, D.C.",
+          "certainty": "clear"
+        },
+        {
+          "start": 378,
+          "end": 391,
+          "type": "ORGANIZATION",
+          "text": "CHUBB LIMITED",
+          "certainty": "clear"
+        },
+        {
+          "start": 447,
+          "end": 458,
+          "type": "LOCATION",
+          "text": "Switzerland",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Regulator is one full organization span; nested UNITED STATES is not repeated as a location. Legislation, identifiers and form names are excluded.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-028",
+      "document_id": "bac-2025-12-31",
+      "source_block_id": "bac-2025-12-31-86e6c0c379e8",
+      "ticker": "BAC",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000157/bac-20251231.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 625,
+      "text": "Our non-U.S. businesses are also subject to extensive regulation by various non-U.S. regulators, including governments, securities exchanges, prudential regulators, central banks and other regulatory bodies, in the jurisdictions in which those businesses operate. For example, our financial services entities are subject to regulation in the United Kingdom (U.K.) by the Prudential Regulatory Authority and Financial Conduct Authority, in Ireland by the European Central Bank (ECB) and the Central Bank of Ireland and in France by the ECB, Autorité de Contrôle Prudentiel et de Résolution and Autorité des Marchés Financiers.",
+      "entities": [
+        {
+          "start": 342,
+          "end": 356,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        },
+        {
+          "start": 358,
+          "end": 362,
+          "type": "LOCATION",
+          "text": "U.K.",
+          "certainty": "clear"
+        },
+        {
+          "start": 371,
+          "end": 402,
+          "type": "ORGANIZATION",
+          "text": "Prudential Regulatory Authority",
+          "certainty": "clear"
+        },
+        {
+          "start": 407,
+          "end": 434,
+          "type": "ORGANIZATION",
+          "text": "Financial Conduct Authority",
+          "certainty": "clear"
+        },
+        {
+          "start": 439,
+          "end": 446,
+          "type": "LOCATION",
+          "text": "Ireland",
+          "certainty": "clear"
+        },
+        {
+          "start": 454,
+          "end": 475,
+          "type": "ORGANIZATION",
+          "text": "European Central Bank",
+          "certainty": "clear"
+        },
+        {
+          "start": 477,
+          "end": 480,
+          "type": "ORGANIZATION",
+          "text": "ECB",
+          "certainty": "clear"
+        },
+        {
+          "start": 490,
+          "end": 513,
+          "type": "ORGANIZATION",
+          "text": "Central Bank of Ireland",
+          "certainty": "clear"
+        },
+        {
+          "start": 521,
+          "end": 527,
+          "type": "LOCATION",
+          "text": "France",
+          "certainty": "clear"
+        },
+        {
+          "start": 535,
+          "end": 538,
+          "type": "ORGANIZATION",
+          "text": "ECB",
+          "certainty": "clear"
+        },
+        {
+          "start": 540,
+          "end": 588,
+          "type": "ORGANIZATION",
+          "text": "Autorité de Contrôle Prudentiel et de Résolution",
+          "certainty": "clear"
+        },
+        {
+          "start": 593,
+          "end": 624,
+          "type": "ORGANIZATION",
+          "text": "Autorité des Marchés Financiers",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Longest organization span wins over nested country names; standalone country mentions remain locations. Source spelling Prudential Regulatory Authority is retained.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-029",
+      "document_id": "bac-2024-12-31",
+      "source_block_id": "bac-2024-12-31-ee29c49176ab",
+      "ticker": "BAC",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-25-000139/bac-20241231.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 158,
+      "text": "Brian T. Moynihan (65) Chair of the Board since October 2014, and President, Chief Executive Officer, and member of the Board of Directors since January 2010.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 17,
+          "type": "PERSON",
+          "text": "Brian T. Moynihan",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Officer name excludes age, job titles and dates.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-030",
+      "document_id": "bac-2023-12-31",
+      "source_block_id": "bac-2023-12-31-3f23ad716b38",
+      "ticker": "BAC",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-24-000122/bac-20231231.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 618,
+      "text": "Our non-U.S. businesses are also subject to extensive regulation by various non-U.S. regulators, including governments, securities exchanges, prudential regulators, central banks and other regulatory bodies, in the jurisdictions in which those businesses operate. For example, our financial services entities in the United Kingdom (U.K.), Ireland and France are subject to regulation by the Prudential Regulatory Authority and Financial Conduct Authority, the European Central Bank and Central Bank of Ireland, and the Autorité de Contrôle Prudentiel et de Résolution and Autorité des Marchés Financiers, respectively.",
+      "entities": [
+        {
+          "start": 316,
+          "end": 330,
+          "type": "LOCATION",
+          "text": "United Kingdom",
+          "certainty": "clear"
+        },
+        {
+          "start": 332,
+          "end": 336,
+          "type": "LOCATION",
+          "text": "U.K.",
+          "certainty": "clear"
+        },
+        {
+          "start": 339,
+          "end": 346,
+          "type": "LOCATION",
+          "text": "Ireland",
+          "certainty": "clear"
+        },
+        {
+          "start": 351,
+          "end": 357,
+          "type": "LOCATION",
+          "text": "France",
+          "certainty": "clear"
+        },
+        {
+          "start": 391,
+          "end": 422,
+          "type": "ORGANIZATION",
+          "text": "Prudential Regulatory Authority",
+          "certainty": "clear"
+        },
+        {
+          "start": 427,
+          "end": 454,
+          "type": "ORGANIZATION",
+          "text": "Financial Conduct Authority",
+          "certainty": "clear"
+        },
+        {
+          "start": 460,
+          "end": 481,
+          "type": "ORGANIZATION",
+          "text": "European Central Bank",
+          "certainty": "clear"
+        },
+        {
+          "start": 486,
+          "end": 509,
+          "type": "ORGANIZATION",
+          "text": "Central Bank of Ireland",
+          "certainty": "clear"
+        },
+        {
+          "start": 519,
+          "end": 567,
+          "type": "ORGANIZATION",
+          "text": "Autorité de Contrôle Prudentiel et de Résolution",
+          "certainty": "clear"
+        },
+        {
+          "start": 572,
+          "end": 603,
+          "type": "ORGANIZATION",
+          "text": "Autorité des Marchés Financiers",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Longest organization spans suppress nested country names. Adjectival non-U.S. is excluded.",
+      "selection_role": "coverage",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-031",
+      "document_id": "bac-2025-12-31",
+      "source_block_id": "bac-2025-12-31-1644a3aa5bc4",
+      "ticker": "BAC",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000157/bac-20251231.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 190,
+      "text": "Brian T. Moynihan (66) Chair of the Board since October 2014, and Chief Executive Officer, and member of the Board of Directors since January 2010. President, January 2010 to September 2025.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 17,
+          "type": "PERSON",
+          "text": "Brian T. Moynihan",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Person-focused supplement.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-032",
+      "document_id": "bac-2023-12-31",
+      "source_block_id": "bac-2023-12-31-ed541ea3c21b",
+      "ticker": "BAC",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-24-000122/bac-20231231.htm",
+      "source_kind": "text",
+      "source_page": null,
+      "source_text_start": 0,
+      "source_text_end": 145,
+      "text": "Alastair M. Borthwick (55) Chief Financial Officer since November 2021; President of Global Commercial Banking from October 2012 to October 2021.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 21,
+          "type": "PERSON",
+          "text": "Alastair M. Borthwick",
+          "certainty": "clear"
+        },
+        {
+          "start": 85,
+          "end": 110,
+          "type": "ORGANIZATION",
+          "text": "Global Commercial Banking",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Named business unit is included by policy; generic job titles are not.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-033",
+      "document_id": "jpm-2023-annual",
+      "source_block_id": "jpm-2023-annual-6a3ab4e76d5b",
+      "ticker": "JPM",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/annualreport-2023.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 19,
+      "source_text_start": 0,
+      "source_text_end": 465,
+      "text": "Recognizing the importance of AI to our business, we created a new position called Chief Data & Analytics Officer that sits on our Operating Committee. Elevating this new role to the Operating Committee level — reporting directly to Daniel Pinto and me — reflects how critical this function will be going for- ward and how seriously we expect AI to influence our business. This will embed data and analytics into our decision making at every level of the com- pany.",
+      "entities": [
+        {
+          "start": 233,
+          "end": 245,
+          "type": "PERSON",
+          "text": "Daniel Pinto",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "AI and Operating Committee are not named entities in the shared task.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-034",
+      "document_id": "jpm-2024-annual",
+      "source_block_id": "jpm-2024-annual-252c12a3107c",
+      "ticker": "JPM",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/annualreport-2024.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 4,
+      "source_text_start": 0,
+      "source_text_end": 402,
+      "text": "Dear Fellow Shareholders, Jamie Dimon, Chairman and Chief Executive Officer Across the globe, 2024 was yet another year of significant challenges, from the terrible ongoing war and violence in Ukraine and conflicts in the Middle East to ongoing terrorist activity and growing geopolitical tensions, importantly with China. Our hearts go out to those whose lives are profoundly affected by these events.",
+      "entities": [
+        {
+          "start": 26,
+          "end": 37,
+          "type": "PERSON",
+          "text": "Jamie Dimon",
+          "certainty": "clear"
+        },
+        {
+          "start": 193,
+          "end": 200,
+          "type": "LOCATION",
+          "text": "Ukraine",
+          "certainty": "clear"
+        },
+        {
+          "start": 222,
+          "end": 233,
+          "type": "LOCATION",
+          "text": "Middle East",
+          "certainty": "clear"
+        },
+        {
+          "start": 316,
+          "end": 321,
+          "type": "LOCATION",
+          "text": "China",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Letter opening, cropped at a sentence boundary before the company-description sentence.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-035",
+      "document_id": "jpm-2025-annual",
+      "source_block_id": "jpm-2025-annual-82574ade3748",
+      "ticker": "JPM",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/annualreport-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 360,
+      "source_text_start": 301,
+      "source_text_end": 485,
+      "text": "Operating Committee James Dimon Chairman and Chief Executive Officer Ashley Bacon Chief Risk Officer Jeremy Barnum Chief Financial Officer Lori A. Beer Global Chief Information Officer",
+      "entities": [
+        {
+          "start": 20,
+          "end": 31,
+          "type": "PERSON",
+          "text": "James Dimon",
+          "certainty": "clear"
+        },
+        {
+          "start": 69,
+          "end": 81,
+          "type": "PERSON",
+          "text": "Ashley Bacon",
+          "certainty": "clear"
+        },
+        {
+          "start": 101,
+          "end": 114,
+          "type": "PERSON",
+          "text": "Jeremy Barnum",
+          "certainty": "clear"
+        },
+        {
+          "start": 139,
+          "end": 151,
+          "type": "PERSON",
+          "text": "Lori A. Beer",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Contiguous officer roster slice. No model-generated reconstruction.",
+      "selection_role": "person_supplement",
+      "split": "development"
+    },
+    {
+      "id": "ner-ref-036",
+      "document_id": "trv-2025-annual",
+      "source_block_id": "trv-2025-annual-449e6cc39bbf",
+      "ticker": "TRV",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://s26.q4cdn.com/410417801/files/doc_financials/2025/AR/2026-Travelers-Annual-Report-Final.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 260,
+      "source_text_start": 0,
+      "source_text_end": 198,
+      "text": "Exhibit 31.1 CERTIFICATION I, Alan D. Schnitzer, certify that: 1. I have reviewed this Annual Report on Form 10-K for the year ended December 31, 2025 of The Travelers Companies, Inc. (the Company);",
+      "entities": [
+        {
+          "start": 30,
+          "end": 47,
+          "type": "PERSON",
+          "text": "Alan D. Schnitzer",
+          "certainty": "clear"
+        },
+        {
+          "start": 154,
+          "end": 183,
+          "type": "ORGANIZATION",
+          "text": "The Travelers Companies, Inc.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Certification excerpt ends at the first complete numbered clause.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-037",
+      "document_id": "trv-2024-annual",
+      "source_block_id": "trv-2024-annual-9ff11321f658",
+      "ticker": "TRV",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://s26.q4cdn.com/410417801/files/doc_financials/2024/ar/v2/Travelers-2024-Annual-Report.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 251,
+      "source_text_start": 0,
+      "source_text_end": 195,
+      "text": "Exhibit 31.2 CERTIFICATION I, Daniel S. Frey, certify that: 1. I have reviewed this Annual Report on Form 10-K for the year ended December 31, 2024 of The Travelers Companies, Inc. (the Company);",
+      "entities": [
+        {
+          "start": 30,
+          "end": 44,
+          "type": "PERSON",
+          "text": "Daniel S. Frey",
+          "certainty": "clear"
+        },
+        {
+          "start": 151,
+          "end": 180,
+          "type": "ORGANIZATION",
+          "text": "The Travelers Companies, Inc.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Certification excerpt ends at the first complete numbered clause.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-038",
+      "document_id": "trv-2023-annual",
+      "source_block_id": "trv-2023-annual-94a2005905a7",
+      "ticker": "TRV",
+      "fiscal_period": "2023-12-31",
+      "source_url": "https://s26.q4cdn.com/410417801/files/doc_financials/2023/ar/Travelers-2023-Annual__Report.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 244,
+      "source_text_start": 0,
+      "source_text_end": 198,
+      "text": "Exhibit 31.1 CERTIFICATION I, Alan D. Schnitzer, certify that: 1. I have reviewed this Annual Report on Form 10-K for the year ended December 31, 2023 of The Travelers Companies, Inc. (the Company);",
+      "entities": [
+        {
+          "start": 30,
+          "end": 47,
+          "type": "PERSON",
+          "text": "Alan D. Schnitzer",
+          "certainty": "clear"
+        },
+        {
+          "start": 154,
+          "end": 183,
+          "type": "ORGANIZATION",
+          "text": "The Travelers Companies, Inc.",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Certification excerpt ends at the first complete numbered clause.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-039",
+      "document_id": "cb-2025-annual",
+      "source_block_id": "cb-2025-annual-62de43f984ff",
+      "ticker": "CB",
+      "fiscal_period": "2025-12-31",
+      "source_url": "https://www.chubb.com/content/dam/annual-corporate-governance/2026/a-chubb-limited/chubb-limited-annual-report-2025.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 20,
+      "source_text_start": 611,
+      "source_text_end": 749,
+      "text": "On behalf of the entire organization, thank you for your trust in us. Sincerely, Evan G. Greenberg Chairman and Chief Executive Officer 18",
+      "entities": [
+        {
+          "start": 81,
+          "end": 98,
+          "type": "PERSON",
+          "text": "Evan G. Greenberg",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Letter closing selected as a short contiguous slice; excludes earlier corporate-name context.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    },
+    {
+      "id": "ner-ref-040",
+      "document_id": "cb-2024-annual",
+      "source_block_id": "cb-2024-annual-0310663d0142",
+      "ticker": "CB",
+      "fiscal_period": "2024-12-31",
+      "source_url": "https://s201.q4cdn.com/471466897/files/doc_financials/2024/ar/2024-Chubb-Limited-Annual-Report-Final.pdf",
+      "source_kind": "pdf_text",
+      "source_page": 21,
+      "source_text_start": 0,
+      "source_text_end": 511,
+      "text": "We have a limitless number of opportunities, ambitious objectives, and the balance sheet, people, capability and patience to deliver. We have come a long way in the last two decades, and I have no doubt that our best days are ahead of us. On behalf of the entire organization, thank you for your trust in us. Sincerely, Evan G. Greenberg Chairman and Chief Executive Officer “ We have a limitless number of opportunities, ambitious objectives, and the balance sheet, people, capability and patience to deliver.”",
+      "entities": [
+        {
+          "start": 320,
+          "end": 337,
+          "type": "PERSON",
+          "text": "Evan G. Greenberg",
+          "certainty": "clear"
+        }
+      ],
+      "annotation_note": "Person-focused supplement. Generic titles and organizational pronouns are not named entities.",
+      "selection_role": "person_supplement",
+      "split": "test"
+    }
+  ],
+  "retrieval_queries": [
+    {
+      "id": "ner-query-01-fdic",
+      "query": "Which passages name the Federal Deposit Insurance Corporation or FDIC?",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "Federal Deposit Insurance Corporation",
+          "FDIC"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-001",
+        "ner-ref-005"
+      ],
+      "relevant_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2025-03-31-9b88caeb8a99"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [
+          "ner-ref-001"
+        ],
+        "test": [
+          "ner-ref-005"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-02-bofase-ecb",
+      "query": "Which passages mention BofASE together with the European Central Bank?",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "BofASE"
+        ],
+        [
+          "European Central Bank",
+          "ECB"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-002"
+      ],
+      "relevant_block_ids": [
+        "bac-2026-03-31-767eecfda2eb"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [],
+        "test": [
+          "ner-ref-002"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-03-broker-subsidiaries",
+      "query": "Find the passages naming Merrill Lynch International and BofA Securities Europe SA.",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "Merrill Lynch International"
+        ],
+        [
+          "BofA Securities Europe SA"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-007"
+      ],
+      "relevant_block_ids": [
+        "bac-2024-06-30-e759fa9d9b9e"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [],
+        "test": [
+          "ner-ref-007"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-04-first-republic",
+      "query": "Where do these passages mention First Republic Bank or First Republic?",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "First Republic Bank",
+          "First Republic"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-011",
+        "ner-ref-012",
+        "ner-ref-014"
+      ],
+      "relevant_block_ids": [
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2025-annual-d461ae4b2679"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [
+          "ner-ref-011",
+          "ner-ref-014"
+        ],
+        "test": [
+          "ner-ref-012"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-05-japan-australia",
+      "query": "Which country-exposure passages name both Japan and Australia?",
+      "split": "development",
+      "entity_mention_groups": [
+        [
+          "Japan"
+        ],
+        [
+          "Australia"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-008",
+        "ner-ref-019"
+      ],
+      "relevant_block_ids": [
+        "bac-2024-03-31-596e4655fe33",
+        "jpm-2026-q1-b2af3a27c1d6"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [
+          "ner-ref-008",
+          "ner-ref-019"
+        ],
+        "test": []
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-06-dimon",
+      "query": "Find passages naming James Dimon or Jamie Dimon.",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "James Dimon",
+          "Jamie Dimon"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-013",
+        "ner-ref-015",
+        "ner-ref-034",
+        "ner-ref-035"
+      ],
+      "relevant_block_ids": [
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [
+          "ner-ref-035"
+        ],
+        "test": [
+          "ner-ref-013",
+          "ner-ref-015",
+          "ner-ref-034"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-07-moynihan",
+      "query": "Where is Brian T. Moynihan named?",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "Brian T. Moynihan"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-029",
+        "ner-ref-031"
+      ],
+      "relevant_block_ids": [
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2025-12-31-1644a3aa5bc4"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [],
+        "test": [
+          "ner-ref-029",
+          "ner-ref-031"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-08-schnitzer",
+      "query": "Find references that name Alan D. Schnitzer.",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "Alan D. Schnitzer"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-036",
+        "ner-ref-038"
+      ],
+      "relevant_block_ids": [
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2023-annual-94a2005905a7"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [],
+        "test": [
+          "ner-ref-036",
+          "ner-ref-038"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-09-greenberg",
+      "query": "Which passages name Evan G. Greenberg?",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "Evan G. Greenberg"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-026",
+        "ner-ref-039",
+        "ner-ref-040"
+      ],
+      "relevant_block_ids": [
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [],
+        "test": [
+          "ner-ref-026",
+          "ner-ref-039",
+          "ner-ref-040"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    },
+    {
+      "id": "ner-query-10-chubb-switzerland",
+      "query": "Find passages naming Chubb Limited and Switzerland.",
+      "split": "test",
+      "entity_mention_groups": [
+        [
+          "Chubb Limited",
+          "CHUBB LIMITED"
+        ],
+        [
+          "Switzerland"
+        ]
+      ],
+      "relevance_rule": "At least one explicitly clear annotation from every mention group must occur in the inspected reference snippet.",
+      "relevant_passage_ids": [
+        "ner-ref-024",
+        "ner-ref-027"
+      ],
+      "relevant_block_ids": [
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2025-q3-3ded31ca8a20"
+      ],
+      "relevant_passage_ids_by_split": {
+        "development": [],
+        "test": [
+          "ner-ref-024",
+          "ner-ref-027"
+        ]
+      },
+      "judgment_scope": "reference_sample_blocks_only",
+      "judged_block_ids": [
+        "bac-2026-06-30-39f8326db39f",
+        "bac-2026-03-31-767eecfda2eb",
+        "bac-2025-09-30-751bc23a8b35",
+        "bac-2025-06-30-e5af79ae457f",
+        "bac-2025-03-31-9b88caeb8a99",
+        "bac-2024-09-30-6b992925ebf1",
+        "bac-2024-06-30-e759fa9d9b9e",
+        "bac-2024-03-31-596e4655fe33",
+        "bac-2023-09-30-aceccdf46f3a",
+        "bac-2023-06-30-e8536ace33a0",
+        "bac-2023-03-31-1d8d88df4fc6",
+        "jpm-2023-annual-e3af62252a5e",
+        "jpm-2024-annual-86f7b5d31c19",
+        "jpm-2025-annual-d461ae4b2679",
+        "jpm-2024-q3-41a10f10cd87",
+        "jpm-2025-q1-f36b3b9fd04a",
+        "jpm-2025-q2-9c944482e849",
+        "jpm-2025-q3-6a4ba1bda551",
+        "jpm-2026-q1-b2af3a27c1d6",
+        "jpm-2026-q2-7cbe1ff2e88d",
+        "trv-2025-annual-a192ae3d99bd",
+        "trv-2024-annual-99f0c8de3c9b",
+        "trv-2023-annual-2b4ce916c0ef",
+        "cb-2025-annual-81bc4fccd11f",
+        "cb-2024-annual-81602f4d353d",
+        "cb-2023-annual-1bfd0062c446",
+        "cb-2025-q3-3ded31ca8a20",
+        "bac-2025-12-31-86e6c0c379e8",
+        "bac-2024-12-31-ee29c49176ab",
+        "bac-2023-12-31-3f23ad716b38",
+        "bac-2025-12-31-1644a3aa5bc4",
+        "bac-2023-12-31-ed541ea3c21b",
+        "jpm-2023-annual-6a3ab4e76d5b",
+        "jpm-2024-annual-252c12a3107c",
+        "jpm-2025-annual-82574ade3748",
+        "trv-2025-annual-449e6cc39bbf",
+        "trv-2024-annual-9ff11321f658",
+        "trv-2023-annual-94a2005905a7",
+        "cb-2025-annual-62de43f984ff",
+        "cb-2024-annual-0310663d0142"
+      ],
+      "unjudged_policy": "unjudged_not_negative",
+      "provenance": "Agent-written from explicit source-span annotations before any new model predictions; not an exhaustive relevance set for the full corpus.",
+      "query_split_reason": "Use held-out test positives when present; otherwise this query is development-only. No query is assigned to a fold with zero known positives."
+    }
+  ],
+  "reporting_policy": {
+    "primary_ner_metrics": "Exact-span-and-type precision/recall/F1 on the 32 test snippets only, with label counts and agent-reviewed reference provenance.",
+    "all_reference_coverage": "Report all 40 reference predictions and annotation coverage separately; do not call all-fold scores held-out or full-corpus accuracy.",
+    "full_corpus": "Running predictions over every corpus block measures processing coverage, not full-corpus extraction accuracy.",
+    "retrieval": "Known-positive recall/MRR use incomplete judgments and test references only; unjudged results are not negatives."
+  }
+}

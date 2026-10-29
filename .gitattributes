@@ -1,0 +1,8 @@
+# Keep recorded NER source and content-addressed exports byte-stable on Windows.
+engine/src/workbench/ner.py text eol=lf
+scripts/ner_worker.py text eol=lf
+scripts/ner_colab_run.py text eol=lf
+scripts/ner_recover_gliner2.py text eol=lf
+scripts/ner_langsmith_replay.py text eol=lf
+web/public/data/ner-results.json text eol=lf
+web/public/data/ner-index/*.json text eol=lf
