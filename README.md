@@ -1,6 +1,6 @@
 # Financial Research & Risk Intelligence Workbench
 
-[Explore the static workbench](https://nandevers.github.io/financial-research-workbench/) · [Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandevers/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
+[Explore the static workbench](https://nandolab.github.io/financial-research-workbench/) · [Open the reproducible notebook in Colab](https://colab.research.google.com/github/nandolab/financial-research-workbench/blob/main/notebooks/benchmark.ipynb)
 
 A portfolio project by Fernando Barbosa. **Can openly available AI make financial reports easier to understand while showing where its answers come from?** This project brings together real bank and insurer reports, retrieves relevant passages and asks models to draft short, source-linked explanations that a reader can inspect. A static React application replays **recorded real executions**. Research and inference happen beforehand in Python or Google Colab. The interface follows the [portfolio design system](docs/DESIGN_SYSTEM.md): white surfaces, navy and blue accents, Georgia headings, and Segoe UI text.
 
@@ -8,12 +8,12 @@ A portfolio project by Fernando Barbosa. **Can openly available AI make financia
 
 ## Explore the research
 
-- [Start here](https://nandevers.github.io/financial-research-workbench/#/overview): the business goal, actual pilot results and a clickable question-to-source-to-answer journey.
-- [Research cases](https://nandevers.github.io/financial-research-workbench/#/research/liquidity-2024-2025-pair): paired answers, source maps, recorded execution steps and failures.
-- [Model comparison](https://nandevers.github.io/financial-research-workbench/#/models): understand simple search versus guided research before exploring the results.
-- [Evaluation lab](https://nandevers.github.io/financial-research-workbench/#/evaluation?case=liquidity-2024-2025-pair): five-way A–E comparison, session-only blind review, recorded generation metrics, source prompt and evaluator inspection. Native LangSmith records open separately and require account access; no credential is shipped to the site.
-- [Named entities](https://nandevers.github.io/financial-research-workbench/#/entities): specialist extraction and entity-assisted retrieval, with measured views activated only by a verified complete five-model result export; source illustrations are explicitly editorial when no measured bundle is included.
-- [How it works](https://nandevers.github.io/financial-research-workbench/#/method): plain-language methodology, a glossary, study limitations and the next improvements.
+- [Start here](https://nandolab.github.io/financial-research-workbench/#/overview): the business goal, actual pilot results and a clickable question-to-source-to-answer journey.
+- [Research cases](https://nandolab.github.io/financial-research-workbench/#/research/liquidity-2024-2025-pair): paired answers, source maps, recorded execution steps and failures.
+- [Model comparison](https://nandolab.github.io/financial-research-workbench/#/models): understand simple search versus guided research before exploring the results.
+- [Evaluation lab](https://nandolab.github.io/financial-research-workbench/#/evaluation?case=liquidity-2024-2025-pair): five-way A–E comparison, session-only blind review, recorded generation metrics, source prompt and evaluator inspection. Native LangSmith records open separately and require account access; no credential is shipped to the site.
+- [Named entities](https://nandolab.github.io/financial-research-workbench/#/entities): specialist extraction and entity-assisted retrieval, with measured views activated only by a verified complete five-model result export; source illustrations are explicitly editorial when no measured bundle is included.
+- [How it works](https://nandolab.github.io/financial-research-workbench/#/method): plain-language methodology, a glossary, study limitations and the next improvements.
 
 The guided route performs fixed related searches and checks company/year evidence coverage before a bounded round of targeted gap searches. Both routes use the same writing prompt. Candidate prompt tests remain unexecuted drafts.
 
@@ -111,7 +111,7 @@ npm run test:web
 npm run build
 ```
 
-The GitHub Pages workflow is **manual** (`workflow_dispatch`). Only project sources and the bounded public snapshot are published. GitHub Actions builds and deploys the reviewed static snapshot; subsequent releases require manually running the workflow. Default path: `https://nandevers.github.io/financial-research-workbench/`. Set `PAGES_BASE=/` for a root user-site deployment. Deployment does not launch inference or consume LangSmith traces.
+The GitHub Pages workflow is **manual** (`workflow_dispatch`). Only project sources and the bounded public snapshot are published. GitHub Actions builds and deploys the reviewed static snapshot; subsequent releases require manually running the workflow. Default path: `https://nandolab.github.io/financial-research-workbench/`. Set `PAGES_BASE=/` for a root user-site deployment. Deployment does not launch inference or consume LangSmith traces.
 
 See `docs/DATA_AND_LICENSES.md` for source and redistribution boundaries.
 

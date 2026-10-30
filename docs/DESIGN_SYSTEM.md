@@ -1,6 +1,6 @@
 # Portfolio design continuity
 
-The workbench shares the visual language of [Fernando Barbosa's portfolio](https://nandevers.github.io/). The live portfolio and its `assets/css/portfolio.css` were checked on 26 October 2026.
+The workbench shares the visual language of [Fernando Barbosa's portfolio](https://nandolab.github.io/). The live portfolio and its `assets/css/portfolio.css` were checked on 26 October 2026.
 
 The shared core tokens are ink `#111318`, navy `#081b41`, blue `#0c2d69`, muted text `#586374`, borders `#d9dfe8`, pale surface `#f3f5f8`, and white. Georgia / Times New Roman provides editorial headings; Segoe UI / Arial provides interface and body text. Fonts use system stacks, without a remote font dependency.
 

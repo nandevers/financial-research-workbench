@@ -6,7 +6,7 @@ import {experimentURL,mean,metricValue,METRICS,MODEL_IDS,pairedDelta,promptPrevi
 import provenance from '../data/evaluation-provenance.json';
 import './evaluation-lab.css';
 
-const sourceRoot='https://github.com/nandevers/financial-research-workbench/blob/main/';
+const sourceRoot='https://github.com/nandolab/financial-research-workbench/blob/main/';
 const letters=['A','B','C','D','E'];
 const tabs=['Dashboard','Five-way comparison','Prompts','Evaluation method'] as const;
 type Tab=typeof tabs[number];

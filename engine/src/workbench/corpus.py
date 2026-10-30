@@ -99,7 +99,7 @@ def fetch_and_parse(limit: int | None = None):
         path = raw_dir / (source['id'] + ('.pdf' if source['format'] == 'pdf' else '.html'))
         try:
             if not path.exists():
-                response = requests.get(source['url'], headers={'User-Agent': 'Fernando Barbosa Financial Research Workbench (github.com/nandevers)'}, timeout=100)
+                response = requests.get(source['url'], headers={'User-Agent': 'Fernando Barbosa Financial Research Workbench (github.com/nandolab)'}, timeout=100)
                 response.raise_for_status()
                 if source['format'] == 'pdf' and not response.content.startswith(b'%PDF'):
                     raise ValueError('Response is not a PDF')
